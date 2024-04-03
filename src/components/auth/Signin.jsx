@@ -15,13 +15,8 @@ const Signin = () => {
           </div>
           <form>
             <FromInput lable="Username" placeholder="Username" name="username"/>
-            <div className="relative">
-              <label className="mb-[10px]">Password</label>
-              <input
-                type={showPassword ? "text" : "password"}
-                className="w-full sm:w-full rounded-[4px] border-2 border-[#418160] p-[10px] px-[10px] mb-1 text-[#000] mt-2"
-                placeholder="Password"
-              />
+            <div className="relative"> 
+              <FromInput lable="Password" placeholder="Password" name="password" type="password"/>
               <span
                 className="absolute right-3 top-[44px] cursor-pointer"
                 onClick={() => setShowPassword((prev) => !prev)}
