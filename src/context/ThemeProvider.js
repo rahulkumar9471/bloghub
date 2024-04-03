@@ -30,8 +30,8 @@ const ThemeProvider = ({ children }) => {
 
   return (
     <ThemeContext.Provider value={{ toggleTheme }}>
-      {children}
-    </ThemeContext.Provider>
+    {children}
+  </ThemeContext.Provider>
   )
 }
 

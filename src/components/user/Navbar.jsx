@@ -9,8 +9,10 @@ const Navbar = () => {
 
   const { toggleTheme } = useTheme();
 
+  // console.log(toggleTheme);
+
   return (
-    <header className="bg-white w-full z-10 shadow-md">
+    <header className="dark:bg-primary bg-white w-full z-10 shadow-md">
       <nav className="flex w-full justify-between px-[2rem] sm:px-[4rem] md:px-[4rem] lg:px-[6rem] xl:px-[8rem] py-4 md:py-4 items-center">
         <div>
           <Link to="/">
