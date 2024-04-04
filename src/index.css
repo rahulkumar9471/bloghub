@@ -1,9 +1,20 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital@0;1&display=swap');
 *{
 
     font-family: 'EB Garamond', serif;
 }
+
+.spin-button-none::-webkit-outer-spin-button, 
+.spin-button-none::-webkit-inner-spin-button  { 
+    appearance: none; 
+    margin: 0; 
+} 
+.spin-button-none[type=number] {
+    -moz-appearance: textfield; 
+}
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+

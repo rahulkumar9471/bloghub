@@ -50,7 +50,7 @@ const Signin = () => {
         </div>
         <div className="flex justify-center items-center mt-4">
           <p>Don't have an account ?</p>
-          <CustomLink to="/sign-up" className="ml-2">
+          <CustomLink to="/auth/sign-up" className="ml-2">
             Sign Up
           </CustomLink>
         </div>

@@ -41,7 +41,7 @@ const Navbar = () => {
             </li>
             <li className="hidden sm:hidden md:hidden lg:block">
               <Link
-                to="Sign-up"
+                to="/auth/Sign-up"
                 className="border-2 border-[#418160] p-3 font-semibold text-[#418160] hover:bg-[#418160] hover:text-[#fff] rounded-[4px]"
               >
                 Create an account

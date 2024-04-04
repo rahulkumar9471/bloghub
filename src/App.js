@@ -5,6 +5,8 @@ import Signin from './components/auth/Signin';
 import Home from './components/pages/Home';
 import Footer from './components/user/Footer';
 import Signup from './components/auth/Signup';
+import EmailVerification from './components/auth/EmailVerification';
+import NotFound from './components/pages/NotFound';
 
 function App() {
   return (
@@ -12,8 +14,10 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/sign-in" element={<Signin />} />
-        <Route path="/sign-up" element={<Signup />} />
+        <Route path="/auth/sign-in" element={<Signin />} />
+        <Route path="/auth/sign-up" element={<Signup />} />
+        <Route path="/auth/verification" element={<EmailVerification />} />
+        <Route path="/*" element={<NotFound />} />
       </Routes>
       <Footer />
     </>

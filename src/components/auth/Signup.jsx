@@ -115,7 +115,7 @@ const Signup = () => {
         </div>
         <div className="flex justify-center items-center mt-4">
           <p>Do you have an account ?</p>
-          <CustomLink to="/sign-in" className="ml-2">
+          <CustomLink to="/auth/sign-in" className="ml-2">
             Sign In
           </CustomLink>
         </div>
