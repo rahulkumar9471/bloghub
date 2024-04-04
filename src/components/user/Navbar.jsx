@@ -12,7 +12,7 @@ const Navbar = () => {
   // console.log(toggleTheme);
 
   return (
-    <header className="dark:bg-primary bg-white w-full z-10 shadow-md">
+    <header className="dark:bg-secondary bg-white w-full z-10 shadow-md">
       <nav className="flex w-full justify-between px-[2rem] sm:px-[4rem] md:px-[4rem] lg:px-[6rem] xl:px-[8rem] py-4 md:py-4 items-center">
         <div>
           <Link to="/">
@@ -24,7 +24,7 @@ const Navbar = () => {
         <div>
           <ul className="flex gap-x-10 font-semibold items-center">
             <li className="hidden sm:hidden md:hidden lg:block">
-              <button className="text-[#203656] hover:text-[#418160] flex items-center">
+              <button className="dark:text-primary text-[#203656] hover:text-[#418160] flex items-center">
                 <span className="mr-1">Search</span> <CiSearch className="" />
               </button>
             </li>

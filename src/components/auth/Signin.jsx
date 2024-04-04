@@ -1,17 +1,17 @@
-import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";  
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
 import FromInput from "../form/FormInput";
-import FormContainer from "../form/FormContainer";
-import { useTheme } from "../../hooks";
+import FormContainer from "../form/FormContainer"; 
 import CustomLink from "../user/CustomLink";
 import Button from "../user/Button";
+import Title from "../form/Title";
 
 const Signin = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
     <FormContainer>
+      <Title>Sign In</Title>
       <form className="w-[18rem]">
         <FromInput lable="Username" placeholder="Username" name="username" />
         <div className="relative">
@@ -44,7 +44,7 @@ const Signin = () => {
           <CustomLink to="/Forgot-Password">Forgot Password ?</CustomLink>
         </div>
         <div className="mt-4">
-          <Button type="button">
+          <Button type="submit">
             Sign in
           </Button>
         </div>
