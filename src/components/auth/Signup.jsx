@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
 import FromInput from "../form/FormInput";
 import FormContainer from "../form/FormContainer";
@@ -41,6 +42,8 @@ const Signup = () => {
     password: "",
   });
 
+  const navigate = useNavigate();
+
   const { name, email, mobile, password } = userinfo;
 
   const handleChange = ({ target }) => {
@@ -59,7 +62,10 @@ const Signup = () => {
 
     if(response.error) return toast.error(response.error);
 
-    toast.success(response.message);
+    navigate('/auth/verification', {
+      state: response.user,
+      replace: true
+    })
 
   };
 
