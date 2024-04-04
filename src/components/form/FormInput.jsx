@@ -10,7 +10,7 @@ const FormInput = ({name, placeholder, lable, ...rest}) => {
         placeholder={placeholder}
         {...rest}
       />
-       <label htmlFor={name} className="mb-[6px] peer-focus:text-primary">{lable}</label>
+       <label htmlFor={name} className="mb-[6px] peer-focus:text-[#418160]">{lable}</label>
     </div>
   );
 };

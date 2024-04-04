@@ -19,7 +19,7 @@ const Signin = () => {
             lable="Password"
             placeholder="Password"
             name="password"
-            type="password"
+            type={showPassword ? "text" : "password"}
           />
           <span
             className="absolute right-3 top-[44px] cursor-pointer"
@@ -45,7 +45,7 @@ const Signin = () => {
         </div>
         <div className="mt-4">
           <Button type="submit">
-            Sign in
+            Sign In
           </Button>
         </div>
         <div className="flex justify-center items-center mt-4">
