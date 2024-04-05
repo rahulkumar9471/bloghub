@@ -7,6 +7,7 @@ import Footer from './components/user/Footer';
 import Signup from './components/auth/Signup';
 import EmailVerification from './components/auth/EmailVerification';
 import NotFound from './components/pages/NotFound';
+import Sidebar from './components/user/Sidebar';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/*" element={<NotFound />} />
       </Routes>
       <Footer />
+      <Sidebar />
     </>
   );
 }
