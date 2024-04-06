@@ -24,6 +24,18 @@ export const verifyUserEmail = async (userInfo) => {
     }
 }
 
+export const resendOtp = async (userInfo) => {
+    try{
+        const { data } = await client.post('/user/resend-token', userInfo);
+        return data;
+    }catch(error){
+        const { response } = error;
+        if(response?.data) return response.data;
+
+        return {error: error.message || error };
+    }
+}
+
 export const signinUser = async (userInfo) => {
     try{
         const { data } = await client.post('/user/signin', userInfo);

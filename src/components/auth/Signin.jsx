@@ -64,6 +64,7 @@ const Signin = () => {
           placeholder="Username"
           name="username"
           onChange={handleChange}
+          value={username}
         />
         <div className="relative">
           <FromInput
@@ -72,6 +73,7 @@ const Signin = () => {
             name="password"
             type={showPassword ? "text" : "password"}
             onChange={handleChange}
+            value={password}
           />
           <span
             className="absolute right-3 top-[44px] cursor-pointer"

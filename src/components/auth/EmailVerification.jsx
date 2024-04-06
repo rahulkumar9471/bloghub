@@ -3,7 +3,7 @@ import FormContainer from "../form/FormContainer";
 import Button from "../user/Button";
 import { useLocation, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import { verifyUserEmail } from "../../api/auth";
+import { resendOtp, verifyUserEmail } from "../../api/auth";
 
 const OTP_LENGTH = 6;
 
@@ -26,6 +26,35 @@ const EmailVerification = () => {
   const user = state?.id;
 
   const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!isValidOTP(otp)) {
+      return toast.error("Invalid OTP !");
+    }
+
+    const { error, message } = await verifyUserEmail({
+      otp: otp.join(""),
+      userId: user,
+    });
+
+    if (error) return toast.error(error);
+
+    toast.success(message);
+  };
+
+  const handleClick = async (e) => {
+    const { error, message } = await resendOtp({ userId: user });
+
+    if (error) return toast.error(error);
+
+    toast.success(message);
+  }
+
+  useEffect(() => {
+    if (!user) navigate("/not-found");
+  }, [user]);
 
   const focusNextInputField = (index) => {
     setactiveOtpIndex(index + 1);
@@ -54,30 +83,9 @@ const EmailVerification = () => {
     }
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    if(!isValidOTP(otp)){
-      return toast.error('Invalid OTP !');
-    }
-
-    const { error, message } = await verifyUserEmail({
-      otp: otp.join(''),
-      userId: user
-    })
-
-    if(error) return toast.error(error);
-
-    toast.success(message);
-  };
-
   useEffect(() => {
     inputRef.current?.focus();
   }, [activeOtpIndex]);
-
-  useEffect(() => {
-    if (!user) navigate("/not-found");
-  }, [user]);
 
   return (
     <FormContainer>
@@ -104,6 +112,11 @@ const EmailVerification = () => {
           })}
         </div>
         <Button type="submit">Verify Account</Button>
+        <div className="mt-4 text-center">
+          <p onClick={handleClick} className="text-[#418160] font-semibold cursor-pointer transform transition-transform duration-300 hover:scale-110">
+            Resend OTP
+          </p>
+        </div>
       </form>
     </FormContainer>
   );
