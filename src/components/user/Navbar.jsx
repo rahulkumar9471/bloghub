@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { CiSearch } from "react-icons/ci";
-import { FaBars } from "react-icons/fa";
-import { useTheme } from "../../hooks";
+import { FaBars } from "react-icons/fa"; 
 import CustomLink from "./CustomLink";
 
 const Navbar = () => {
   const [isHeaderFixed, setIsHeaderFixed] = useState(false);
-
-  const { toggleTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {

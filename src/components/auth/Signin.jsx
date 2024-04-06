@@ -9,11 +9,11 @@ import toast from "react-hot-toast";
 import { signinUser } from "../../api/auth";
 import { useNavigate } from "react-router-dom";
 
-const validateUserInfo = ({ username, password }) => {
+const validateUserInfo = ({ email, password }) => {
   const isValidEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-  if (!username.trim()) return { ok: false, error: "Username is Missing" };
-  if (!isValidEmail.test(username))
-    return { ok: false, error: "Invalid Username" };
+  if (!email.trim()) return { ok: false, error: "email is Missing" };
+  if (!isValidEmail.test(email))
+    return { ok: false, error: "Invalid email" };
 
   if (!password.trim()) return { ok: false, error: "Invalid password" };
   if (password.length < 8)
@@ -26,13 +26,13 @@ const Signin = () => {
 
   const [showPassword, setShowPassword] = useState(false);
   const [ userInfo, setUserInfo ] = useState({
-    username: "",
+    email: "",
     password: ""
   });
 
   const navigate = useNavigate();
 
-  const { username, password } = userInfo;
+  const { email, password } = userInfo;
 
   const handleChange = ({ target }) => {
     const { value, name } = target;
@@ -60,11 +60,11 @@ const Signin = () => {
       <form onSubmit={handleSubmit} className="w-[18rem]">
         <FromInput
           type="email"
-          lable="Username"
-          placeholder="Username"
-          name="username"
+          lable="Email"
+          placeholder="Email"
+          name="email"
           onChange={handleChange}
-          value={username}
+          value={email}
         />
         <div className="relative">
           <FromInput
