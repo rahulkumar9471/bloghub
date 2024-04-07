@@ -31,8 +31,7 @@ const Signin = () => {
   }); 
 
   const { handleLogin, authInfo } = useAuth();
-
-  console.log(authInfo);
+  const { isPending } = authInfo;
 
   const handleChange = ({ target }) => {
     const { value, name } = target;
@@ -99,7 +98,7 @@ const Signin = () => {
           <CustomLink to="/Forgot-Password">Forgot Password ?</CustomLink>
         </div>
         <div className="mt-4">
-          <Button type="submit">Sign In</Button>
+          <Button type="submit" busy={isPending}>Sign In</Button>
         </div>
         <div className="flex justify-center items-center mt-4">
           <p>Don't have an account ?</p>
