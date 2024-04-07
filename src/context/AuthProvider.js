@@ -1,5 +1,5 @@
 import React, { createContext, useState } from 'react'
-import { signinUser } from '../api/auth';
+import { signInUser } from '../api/auth';
 
 export const AuthContext = createContext();
 
@@ -16,9 +16,9 @@ const AuthProvider = ({children}) => {
 
     const handleLogin = async (email, password) => {
         setAuthInfo({ ...authInfo, isPending: true });
-        const { error, user } = await signinUser({ email, password });
+        const { error, user } = await signInUser({ email, password });
 
-        if(error) return setAuthInfo({ ...authInfo, isPending: false });
+        if(error) return setAuthInfo({ ...authInfo, isPending: false, error });
 
         setAuthInfo({
             profile: { ...user },

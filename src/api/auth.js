@@ -36,7 +36,7 @@ export const resendOtp = async (userInfo) => {
     }
 }
 
-export const signinUser = async (userInfo) => {
+export const signInUser = async (userInfo) => {
     try{
         const { data } = await client.post('/user/signin', userInfo);
         return data;

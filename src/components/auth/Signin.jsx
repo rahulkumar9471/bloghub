@@ -6,8 +6,8 @@ import CustomLink from "../user/CustomLink";
 import Button from "../user/Button";
 import Title from "../form/Title";
 import toast from "react-hot-toast";
-import { signinUser } from "../../api/auth";
-import { useNavigate } from "react-router-dom";
+import { signInUser } from "../../api/auth"; 
+import { useAuth } from "../../hooks";
 
 const validateUserInfo = ({ email, password }) => {
   const isValidEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -28,11 +28,11 @@ const Signin = () => {
   const [ userInfo, setUserInfo ] = useState({
     email: "",
     password: ""
-  });
+  }); 
 
-  const navigate = useNavigate();
+  const { handleLogin, authInfo } = useAuth();
 
-  const { email, password } = userInfo;
+  console.log(authInfo);
 
   const handleChange = ({ target }) => {
     const { value, name } = target;
@@ -45,13 +45,14 @@ const Signin = () => {
     const { ok, error } = validateUserInfo(userInfo);
     if (!ok) return toast.error(error);
 
-    var response = await signinUser(userInfo);
+    handleLogin(userInfo.email, userInfo.password)
+
+    var response = await signInUser(userInfo);
 
     if(response.error) return toast.error(response.error);
 
     if(response.message) return toast.success(response.message);
 
-    navigate('/')
   }
 
   return (
@@ -64,7 +65,7 @@ const Signin = () => {
           placeholder="Email"
           name="email"
           onChange={handleChange}
-          value={email}
+          value={userInfo.email}
         />
         <div className="relative">
           <FromInput
@@ -73,7 +74,7 @@ const Signin = () => {
             name="password"
             type={showPassword ? "text" : "password"}
             onChange={handleChange}
-            value={password}
+            value={userInfo.password}
           />
           <span
             className="absolute right-3 top-[44px] cursor-pointer"
