@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
 import FromInput from "../form/FormInput";
@@ -8,6 +8,7 @@ import Button from "../user/Button";
 import Title from "../form/Title";
 import toast from "react-hot-toast";
 import { createUser } from "../../api/auth";
+import { useAuth } from "../../hooks";
 
 const validateUserInfo = ({ name, email, mobile, password }) => {
   const isValidEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -43,6 +44,8 @@ const Signup = () => {
   });
 
   const navigate = useNavigate();
+  const { authInfo } = useAuth();
+  const { isLoggedIn } = authInfo;
 
   const { name, email, mobile, password } = userinfo;
 
@@ -68,6 +71,10 @@ const Signup = () => {
     })
 
   };
+
+  useEffect(() => {
+    if(isLoggedIn) navigate('/');
+  },[isLoggedIn])
 
   return (
     <FormContainer>

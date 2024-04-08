@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { CiSearch } from "react-icons/ci";
-import { FaBars } from "react-icons/fa"; 
+import { FaBars } from "react-icons/fa";
 import CustomLink from "./CustomLink";
+import { useAuth } from "../../hooks";
 
 const Navbar = () => {
   const [isHeaderFixed, setIsHeaderFixed] = useState(false);
+  const { authInfo, handleLogout } = useAuth();
+  const { isLoggedIn } = authInfo;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -43,25 +46,35 @@ const Navbar = () => {
               </button>
             </li>
             <li className="hidden sm:hidden md:hidden lg:block">
-              {/* <button onClick={toggleTheme} className="border-2 border-[#418160] p-3 text-[#418160] hover:bg-[#418160] hover:text-[#fff] rounded-[4px]">
-                <BsFillSunFill />
-              </button> */}
-              <Link
-                href=""
-                to="/auth/sign-in"
-                className="text-[#203656] hover:text-[#418160]"
-              >
-                Sign in
-              </Link>
+              {isLoggedIn ? (
+                <button
+                  onClick={handleLogout} 
+                  className="text-[#203656] hover:text-[#418160]"
+                >
+                  {authInfo.profile.name}
+                </button>
+              ) : (
+                <Link
+                  href=""
+                  to="/auth/sign-in"
+                  className="text-[#203656] hover:text-[#418160]"
+                >
+                  Sign in
+                </Link>
+              )}
             </li>
-            <li className="hidden sm:hidden md:hidden lg:block">
-              <Link
-                to="/auth/sign-up"
-                className="border-2 border-[#418160] p-3 font-semibold text-[#418160] hover:bg-[#418160] hover:text-[#fff] rounded-[4px]"
-              >
-                Create an account
-              </Link>
-            </li>
+            {isLoggedIn ? (
+              ""
+            ) : (
+              <li className="hidden sm:hidden md:hidden lg:block">
+                <Link
+                  to="/auth/sign-up"
+                  className="border-2 border-[#418160] p-3 font-semibold text-[#418160] hover:bg-[#418160] hover:text-[#fff] rounded-[4px]"
+                >
+                  Create an account
+                </Link>
+              </li>
+            )}
             <li className="block sm:block md:block lg:block xl:hidden">
               <button className="border-2 border-[#418160] p-3 text-[#418160] hover:bg-[#418160] hover:text-[#fff] rounded-[4px]">
                 <FaBars />

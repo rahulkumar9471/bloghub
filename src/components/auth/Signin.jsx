@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
 import FromInput from "../form/FormInput";
 import FormContainer from "../form/FormContainer";
@@ -8,14 +8,15 @@ import Title from "../form/Title";
 import toast from "react-hot-toast";
 import { signInUser } from "../../api/auth"; 
 import { useAuth } from "../../hooks";
+import { useNavigate } from "react-router-dom";
 
 const validateUserInfo = ({ email, password }) => {
   const isValidEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-  if (!email.trim()) return { ok: false, error: "email is Missing" };
+  if (!email.trim()) return { ok: false, error: "Email is Missing." };
   if (!isValidEmail.test(email))
     return { ok: false, error: "Invalid email" };
 
-  if (!password.trim()) return { ok: false, error: "Invalid password" };
+  if (!password.trim()) return { ok: false, error: "Invalid password." };
   if (password.length < 8)
     return { ok: false, error: "Password must be at least 8 characters!" };
 
@@ -30,8 +31,10 @@ const Signin = () => {
     password: ""
   }); 
 
+  const navigate = useNavigate();
+
   const { handleLogin, authInfo } = useAuth();
-  const { isPending } = authInfo;
+  const { isPending, isLoggedIn } = authInfo;
 
   const handleChange = ({ target }) => {
     const { value, name } = target;
@@ -53,6 +56,10 @@ const Signin = () => {
     if(response.message) return toast.success(response.message);
 
   }
+
+  useEffect(() => {
+    if(isLoggedIn) navigate('/');
+  },[isLoggedIn])
 
   return (
     <FormContainer>

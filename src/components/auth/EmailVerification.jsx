@@ -4,6 +4,7 @@ import Button from "../user/Button";
 import { useLocation, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { resendOtp, verifyUserEmail } from "../../api/auth";
+import { useAuth } from "../../hooks";
 
 const OTP_LENGTH = 6;
 
@@ -19,6 +20,8 @@ const isValidOTP = (otp) => {
 const EmailVerification = () => {
   const [otp, setOtp] = useState(new Array(OTP_LENGTH).fill(""));
   const [activeOtpIndex, setactiveOtpIndex] = useState(0);
+  const { isAuth, authInfo } = useAuth();
+  const { isLoggedIn } = authInfo;
   const inputRef = useRef();
 
   const { state } = useLocation();
@@ -34,7 +37,11 @@ const EmailVerification = () => {
       return toast.error("Invalid OTP !");
     }
 
-    const { error, message } = await verifyUserEmail({
+    const {
+      error,
+      message,
+      user: userResponse,
+    } = await verifyUserEmail({
       otp: otp.join(""),
       userId: user,
     });
@@ -42,6 +49,9 @@ const EmailVerification = () => {
     if (error) return toast.error(error);
 
     toast.success(message);
+
+    localStorage.setItem("auth-token", userResponse.token);
+    isAuth();
   };
 
   const handleClick = async (e) => {
@@ -50,11 +60,12 @@ const EmailVerification = () => {
     if (error) return toast.error(error);
 
     toast.success(message);
-  }
+  };
 
   useEffect(() => {
     if (!user) navigate("/not-found");
-  }, [user]);
+    if (isLoggedIn) navigate("/");
+  }, [user, isLoggedIn]);
 
   const focusNextInputField = (index) => {
     setactiveOtpIndex(index + 1);
@@ -113,7 +124,10 @@ const EmailVerification = () => {
         </div>
         <Button type="submit">Verify Account</Button>
         <div className="mt-4 text-center">
-          <p onClick={handleClick} className="text-[#418160] font-semibold cursor-pointer transform transition-transform duration-300 hover:scale-110">
+          <p
+            onClick={handleClick}
+            className="text-[#418160] font-semibold cursor-pointer transform transition-transform duration-300 hover:scale-110"
+          >
             Resend OTP
           </p>
         </div>
