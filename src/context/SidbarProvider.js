@@ -1,0 +1,24 @@
+import React, { createContext, useState, useContext } from 'react';
+
+export const SidebarContext = createContext();
+
+const SidebarProvider = ({ children }) => {
+    const [isSidebarOpen, setSidebarOpen] = useState(false);
+
+    const toggleSidebar = () => {
+        setSidebarOpen(!isSidebarOpen);
+    }
+
+    return (
+        <SidebarContext.Provider value={{ isSidebarOpen, toggleSidebar }}>
+            {children}
+        </SidebarContext.Provider>
+    );
+}
+
+export default SidebarProvider;
+
+export const useSidebar = () => {
+    const { isSidebarOpen, toggleSidebar } = useContext(SidebarContext);
+    return { isSidebarOpen, toggleSidebar };
+}

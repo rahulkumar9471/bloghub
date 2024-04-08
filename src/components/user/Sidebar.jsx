@@ -3,19 +3,23 @@ import CustomLink from './CustomLink'
 import SocialPlugin from './SocialPlugin'
 import { MdClose } from 'react-icons/md'
 import { Link } from 'react-router-dom'
-import { FaArrowDownLong } from 'react-icons/fa6'
+import { FaArrowDownLong } from 'react-icons/fa6'  
 
-const Sidebar = () => {
+const Sidebar = (props) => {
+
+  const isSidebarOpen= props.isSidebarOpen;
+  const toggleSidebar= props.toggleSidebar;
+
   return (
     <div className="">
     <div
-      className={`fixed bg-[#000] max-w-full h-[100vh] top-0 right-0 bottom-0 left-0 shadow-md z-50 transition duration-300 ease-in-out opacity-70 `}
+      className={`fixed ${isSidebarOpen ? '' : "hidden"} bg-[#000] max-w-full h-[100vh] top-0 right-0 bottom-0 left-0 shadow-md z-50 transition duration-300 ease-in-out opacity-70 `}
     ></div>
     <div
-      className={`bg-[#fff] max-w-[400px] fixed top-0 right-0 h-[100vh] shadow-md z-50 transition-all duration-300 ease-out`}
+      className={`bg-[#fff] ${isSidebarOpen ? "max-w-[400px]" : "max-w-[0px]"}  fixed top-0 right-0 h-[100vh] shadow-md z-50 transition-all duration-300 ease-out`}
     >
       <div className="text-right">
-        <button className="px-2 mr-8 mt-4 py-1">
+        <button onClick={toggleSidebar} className="px-2 mr-8 mt-4 py-1">
           <MdClose className="text-2xl" />
         </button>
       </div>

@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 import { CiSearch } from "react-icons/ci";
 import { FaBars } from "react-icons/fa";
 import CustomLink from "./CustomLink";
-import { useAuth } from "../../hooks";
+import { useAuth } from "../../hooks";  
 
-const Navbar = () => {
+const Navbar = ({toggleSidebar}) => {
   const [isHeaderFixed, setIsHeaderFixed] = useState(false);
   const { authInfo, handleLogout } = useAuth();
-  const { isLoggedIn } = authInfo;
+  const { isLoggedIn } = authInfo;  
 
   useEffect(() => {
     const handleScroll = () => {
@@ -76,10 +76,10 @@ const Navbar = () => {
               </li>
             )}
             <li className="block sm:block md:block lg:block xl:hidden">
-              <button className="border-2 border-[#418160] p-3 text-[#418160] hover:bg-[#418160] hover:text-[#fff] rounded-[4px]">
+              <button onClick={toggleSidebar} className="border-2 border-[#418160] p-3 text-[#418160] hover:bg-[#418160] hover:text-[#fff] rounded-[4px]">
                 <FaBars />
               </button>
-            </li>
+            </li> 
           </ul>
         </div>
       </nav>

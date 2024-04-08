@@ -99,7 +99,7 @@ const EmailVerification = () => {
   }, [activeOtpIndex]);
 
   return (
-    <FormContainer>
+    <FormContainer className="h-[60vh]">
       <h2 className="text-center mb-1 text-xl text-[#418160] font-semibold">
         Please Enter the OTP to verify your accout
       </h2>

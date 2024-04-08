@@ -77,7 +77,7 @@ const Signup = () => {
   },[isLoggedIn])
 
   return (
-    <FormContainer>
+    <FormContainer className="h-screen">
       <Title>Sign Up</Title>
       <form onSubmit={handleSubmit} className="w-[18rem]">
         <FromInput

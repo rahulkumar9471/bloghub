@@ -62,7 +62,7 @@ const Signin = () => {
   },[isLoggedIn])
 
   return (
-    <FormContainer>
+    <FormContainer className="h-[80vh]">
       <Title>Sign In</Title>
       <form onSubmit={handleSubmit} className="w-[18rem]">
         <FromInput
@@ -102,7 +102,7 @@ const Signin = () => {
             />
             <label htmlFor="invalidCheck">Remember Me</label>
           </div>
-          <CustomLink to="/Forgot-Password">Forgot Password ?</CustomLink>
+          <CustomLink to="/auth/forgot-password">Forgot Password ?</CustomLink>
         </div>
         <div className="mt-4">
           <Button type="submit" busy={isPending}>Sign In</Button>
