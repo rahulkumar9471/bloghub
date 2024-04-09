@@ -11,9 +11,9 @@ import { createUser } from "../../api/auth";
 import { useAuth } from "../../hooks";
 
 const validateUserInfo = ({ name, email, mobile, password }) => {
-  const isValidEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  const isValidEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/; 
   const isValidName = /^[a-z A-Z]+$/;
-  const isValidMobile = /^\d{10}$/;
+  const isValidMobile = /^[6-9]\d{9}$/;
 
   if (!name.trim()) return { ok: false, error: "Name is Missing" };
   if (!isValidName.test(name)) return { ok: false, error: "Invalid Name !" };
@@ -25,7 +25,7 @@ const validateUserInfo = ({ name, email, mobile, password }) => {
   if (!isValidMobile.test(mobile.trim()))
     return {
       ok: false,
-      error: "Invalid mobile number! Please enter a 10-digit number.",
+      error: "Invalid mobile number!",
     };
 
   if(!password.trim()) return { ok: false, error: "Invalid password"};

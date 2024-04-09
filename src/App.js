@@ -11,6 +11,7 @@ import Sidebar from './components/user/Sidebar';
 import ForgotPassword from './components/auth/ForgotPassword';
 import { useContext } from 'react';
 import { SidebarContext } from './context/SidbarProvider';
+import ConfirmPassword from './components/auth/ConfirmPassword';
 
 function App() {
   const { toggleSidebar, isSidebarOpen } = useContext(SidebarContext)
@@ -23,6 +24,7 @@ function App() {
         <Route path="/auth/sign-up" element={<Signup />} />
         <Route path="/auth/verification" element={<EmailVerification />} />
         <Route path="/auth/forgot-password" element={<ForgotPassword />} />
+        <Route path="/auth/reset-password" element={<ConfirmPassword />} />
         <Route path="/*" element={<NotFound />} />
       </Routes>
       <Footer />

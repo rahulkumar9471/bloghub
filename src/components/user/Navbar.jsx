@@ -26,7 +26,7 @@ const Navbar = ({toggleSidebar}) => {
 
   return (
     <header
-      className={`bg-white w-full z-10 shadow-md ${
+      className={`bg-white w-full z-50 shadow-md ${
         isHeaderFixed ? "fixed top-0" : ""
       }`}
     >
