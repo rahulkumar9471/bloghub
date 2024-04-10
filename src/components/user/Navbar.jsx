@@ -3,12 +3,16 @@ import { Link } from "react-router-dom";
 import { CiSearch } from "react-icons/ci";
 import { FaBars } from "react-icons/fa";
 import CustomLink from "./CustomLink";
-import { useAuth } from "../../hooks";  
+import { useAuth } from "../../hooks";
 
-const Navbar = ({toggleSidebar}) => {
+const Navbar = ({ toggleSidebar }) => {
+  const [isOpen, setIsOpen] = useState(null);
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  }; 
   const [isHeaderFixed, setIsHeaderFixed] = useState(false);
   const { authInfo, handleLogout } = useAuth();
-  const { isLoggedIn } = authInfo;  
+  const { isLoggedIn } = authInfo;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,6 +26,10 @@ const Navbar = ({toggleSidebar}) => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
+  }, []);
+
+  useEffect(() => {
+    setIsOpen(false);
   }, []);
 
   return (
@@ -47,12 +55,34 @@ const Navbar = ({toggleSidebar}) => {
             </li>
             <li className="hidden sm:hidden md:hidden lg:block">
               {isLoggedIn ? (
-                <button
-                  onClick={handleLogout} 
-                  className="text-[#203656] hover:text-[#418160]"
-                >
-                  {authInfo.profile.name}
-                </button>
+                <div className="relative">
+                  <button
+                    onClick={toggleDropdown}
+                    className="px-4 py-2 bg-gray-800 text-white rounded hover:bg-gray-700 focus:outline-none focus:bg-gray-700"
+                  >
+                    {authInfo.profile.name}
+                  </button>
+                  {isOpen && (
+                    <div className="absolute z-10 mt-2 w-48 bg-white rounded-md shadow-lg origin-top-right right-0">
+                      <div className="py-1">
+                        {/* Dropdown Items */}
+
+                        <Link
+                          to=''
+                          className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
+                        >
+                          Profile
+                        </Link>
+                        <Link
+                          onClick={handleLogout}
+                          className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
+                        >
+                          Logout
+                        </Link>
+                      </div>
+                    </div>
+                  )}
+                </div>
               ) : (
                 <Link
                   href=""
@@ -76,10 +106,13 @@ const Navbar = ({toggleSidebar}) => {
               </li>
             )}
             <li className="block sm:block md:block lg:block xl:hidden">
-              <button onClick={toggleSidebar} className="border-2 border-[#418160] p-3 text-[#418160] hover:bg-[#418160] hover:text-[#fff] rounded-[4px]">
+              <button
+                onClick={toggleSidebar}
+                className="border-2 border-[#418160] p-3 text-[#418160] hover:bg-[#418160] hover:text-[#fff] rounded-[4px]"
+              >
                 <FaBars />
               </button>
-            </li> 
+            </li>
           </ul>
         </div>
       </nav>
