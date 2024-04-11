@@ -8,16 +8,13 @@ import Signup from './components/auth/Signup';
 import EmailVerification from './components/auth/EmailVerification';
 import NotFound from './components/pages/NotFound';
 import Sidebar from './components/user/Sidebar';
-import ForgotPassword from './components/auth/ForgotPassword';
-import { useContext } from 'react';
-import { SidebarContext } from './context/SidbarProvider';
+import ForgotPassword from './components/auth/ForgotPassword'; 
 import ConfirmPassword from './components/auth/ConfirmPassword';
 
-function App() {
-  const { toggleSidebar, isSidebarOpen } = useContext(SidebarContext)
+function App() { 
   return (
     <>
-      <Navbar toggleSidebar={toggleSidebar} />
+      <Navbar   />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/auth/sign-in" element={<Signin />} />
@@ -28,7 +25,7 @@ function App() {
         <Route path="/*" element={<NotFound />} />
       </Routes>
       <Footer />
-      <Sidebar toggleSidebar={toggleSidebar} isSidebarOpen={isSidebarOpen} />
+      <Sidebar   />
     </>
   );
 }

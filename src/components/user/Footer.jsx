@@ -2,13 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { IoIosMail, IoIosSend } from "react-icons/io";
 import { FaPhoneAlt } from "react-icons/fa";
-import SocialPlugin from "./SocialPlugin";
-import CustomLink from "./CustomLink";
+import SocialPlugin from "./SocialPlugin"; 
 
 const Footer = () => {
   return (
     <>
-      <div className="relative h-28 dark:bg-primary bg-secondary shadow-md">
+      <div className="relative h-28 dark:bg-primary bg-secondary">
         <div className="absolute w-full px-[2rem] sm:px-[4rem] md:px-[4rem] lg:px-[6rem] xl:px-[8rem] bottom-[-80px]">
           <div className="bg-[#000] text-[#fff] p-8 rounded-[10px]">
             <div className="flex flex-wrap justify-between items-center">
@@ -33,15 +32,15 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <footer className="border-t-2 dark:bg-primary bg-secondary shadow-md">
+      <footer className="bg-[#181818]">
         <div className="w-full flex flex-wrap justify-between px-[2rem] sm:px-[4rem] md:px-[4rem] lg:px-[6rem] xl:px-[8rem] py-4 md:py-[140px] pt-[140px] text-white text-center">
           <div className="w-full sm:w-full md:w-6/12 lg:w-3/12 xl:w-3/12 text-center">
             <Link to="#">
-              <h1 className="text-2xl sm:text-2xl md:text-2xl lg:text-2xl xl:text-2xl font-bold uppercase dark:bg-dark-subtle bg-light-subtle inline-block text-transparent bg-clip-text">
+              <h1 className="text-2xl sm:text-2xl md:text-2xl lg:text-2xl xl:text-2xl font-bold uppercase bg-dark-subtle inline-block text-transparent bg-clip-text">
                 EducationToday
               </h1>
             </Link>
-            <p className="mt-4 dark:text-dark-subtle text-light-subtle">
+            <p className="mt-4 text-dark-subtle">
               Include popular icons in your React projects easily with
               react-icons, which utilizes ES6 imports that allows you to include
               only the icons that your project is using.
@@ -50,59 +49,63 @@ const Footer = () => {
           </div>
           <div className="w-full sm:w-full md:w-6/12 lg:w-3/12 xl:w-3/12 text-center mt-5 sm:mt-5 md:mt-0 lg:mt-0 xl:mt-0">
             <div className="mb-5">
-              <h1 className="text-2xl dark:text-dark-subtle text-light-subtle">Explore</h1>
+              <h1 className="text-2xl text-dark-subtle">
+                Explore
+              </h1>
             </div>
             <ul className="flex flex-col gap-y-3">
               <li>
-                <CustomLink to="#">Home</CustomLink>
+                <Link to="#">Home</Link>
               </li>
               <li>
-                <CustomLink to="#">Our Projects</CustomLink>
+                <Link to="#">Our Projects</Link>
               </li>
               <li>
-                <CustomLink to="#">Profile</CustomLink>
+                <Link to="#">Profile</Link>
               </li>
               <li>
-                <CustomLink to="#">About us</CustomLink>
+                <Link to="#">About us</Link>
               </li>
               <li>
-                <CustomLink to="Contact-us">Contact us</CustomLink>
+                <Link to="Contact-us">Contact us</Link>
               </li>
               <li>
-                <CustomLink to="#">Create a account</CustomLink>
+                <Link to="#">Create a account</Link>
               </li>
             </ul>
           </div>
           <div className="w-full sm:w-full md:w-6/12 lg:w-3/12 xl:w-3/12 text-center mt-5 sm:mt-5 md:mt-5 lg:mt-0 xl:mt-0">
             <div className="mb-5">
-              <h1 className="text-2xl dark:text-dark-subtle text-light-subtle">Explore</h1>
+              <h1 className="text-2xl text-dark-subtle">
+                Explore
+              </h1>
             </div>
             <ul className="flex flex-col gap-y-3">
               <li>
-                <CustomLink to="#">Ui/Ux Design</CustomLink>
+                <Link to="#">Ui/Ux Design</Link>
               </li>
               <li>
-                <CustomLink to="#">Web Development</CustomLink>
+                <Link to="#">Web Development</Link>
               </li>
               <li>
-                <CustomLink to="#">Typography</CustomLink>
+                <Link to="#">Typography</Link>
               </li>
               <li>
-                <CustomLink to="#">Freelance Business</CustomLink>
+                <Link to="#">Freelance Business</Link>
               </li>
               <li>
-                <CustomLink to="#">Lifestyle</CustomLink>
+                <Link to="#">Lifestyle</Link>
               </li>
               <li>
-                <CustomLink to="#">Startups</CustomLink>
+                <Link to="#">Startups</Link>
               </li>
             </ul>
           </div>
           <div className="w-full sm:w-full md:w-6/12 lg:w-3/12 xl:w-3/12 text-center mt-5 sm:mt-5 md:mt-5 lg:mt-0 xl:mt-0">
             <div className="mb-5">
-              <h1 className="text-2xl dark:text-dark-subtle text-light-subtle">Contact</h1>
+              <h1 className="text-2xl  text-dark-subtle">Contact</h1>
             </div>
-            <div className="text-center dark:text-dark-subtle text-light-subtle">
+            <div className="text-center  text-dark-subtle">
               <p>
                 3rd floor, no 461, Sai sobagu, Outer Ring Rd, Teacher's Colony,
                 Sector 5, HSR Layout, Bengaluru, Karnataka 560034
@@ -126,8 +129,8 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="border-[1px] border-[#2b2b2b]"></div>
-        <div className="text-center p-4 dark:text-dark-subtle text-light-subtle">
+        <div className="mx-auto border-[1px]  border-dark-subtle w-10/12"></div>
+        <div className="text-center p-4  text-dark-subtle">
           <h1 className="text-l">
             &#169; Copyright 2024{" "}
             <Link

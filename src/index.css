@@ -13,6 +13,9 @@
     -moz-appearance: textfield; 
 }
 
+.shadow-custom {
+    box-shadow: rgba(102, 116, 204, 0.25) 0px 4px 10px;
+  }
 
 @tailwind base;
 @tailwind components;

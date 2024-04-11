@@ -4,11 +4,11 @@ import SocialPlugin from './SocialPlugin'
 import { MdClose } from 'react-icons/md'
 import { Link } from 'react-router-dom'
 import { FaArrowDownLong } from 'react-icons/fa6'  
+import { useSidebar } from '../../hooks'
 
-const Sidebar = (props) => {
+const Sidebar = () => {
 
-  const isSidebarOpen= props.isSidebarOpen;
-  const toggleSidebar= props.toggleSidebar;
+  const { toggleSidebar, isSidebarOpen } = useSidebar();
 
   return (
     <div className="">

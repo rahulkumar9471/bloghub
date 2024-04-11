@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 import { CiSearch } from "react-icons/ci";
 import { FaBars } from "react-icons/fa";
 import CustomLink from "./CustomLink";
-import { useAuth, useTheme } from "../../hooks";
-import { IoSunnyOutline } from "react-icons/io5";
+import { useAuth, useTheme, useSidebar } from "../../hooks";
+import { IoSunnyOutline, IoMoon } from "react-icons/io5"; 
 
-const Navbar = ({ toggleSidebar }) => {
-  const { toggleTheme } = useTheme();
-
+const Navbar = () => {
+  const { toggleTheme, theme } = useTheme();
+  const { toggleSidebar } = useSidebar(); 
   const [isOpen, setIsOpen] = useState(null);
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -37,7 +37,7 @@ const Navbar = ({ toggleSidebar }) => {
 
   return (
     <header
-      className={`dark:bg-primary bg-secondary w-full z-50 shadow-md dark:border-b-2 dark:border-dark-subtle  ${
+      className={`dark:bg-primary bg-secondary w-full z-50 shadow-md dark:border-dark-subtle  ${
         isHeaderFixed ? "fixed top-0" : ""
       }`}
     >
@@ -57,7 +57,10 @@ const Navbar = ({ toggleSidebar }) => {
           />
           <span className="absolute left-2 top-[10px]">
             {" "}
-            <CiSearch className="dark:text-dark-subtle text-light-subtle" size={24} />
+            <CiSearch
+              className="dark:text-dark-subtle text-light-subtle"
+              size={24}
+            />
           </span>
         </div>
         <div>
@@ -67,7 +70,7 @@ const Navbar = ({ toggleSidebar }) => {
                 onClick={toggleTheme}
                 className="p-2 rounded-[4px] border-2 dark:border-dark-subtle dark:text-dark-subtle dark:hover:bg-dark-subtle dark:hover:text-light-subtle border-light-subtle text-light-subtle hover:bg-light-subtle hover:text-dark-subtle"
               >
-                <IoSunnyOutline size={24} />
+                {theme === "dark" ? <IoMoon size={24}/> : <IoSunnyOutline size={24} />}
               </button>
             </li>
             <li className="hidden sm:hidden md:hidden lg:block">

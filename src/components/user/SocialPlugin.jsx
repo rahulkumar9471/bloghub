@@ -11,40 +11,40 @@ const SocialPlugin = () => {
         <div>
           <Link to="">
             <button className="shadow-xl flex items-center justify-center p-2 w-10 h-10 rounded-full">
-              <FaFacebook className="text-xl dark:hover:text-dark-subtle hover:text-light-subtle dark:text-dark-subtle text-light-subtle" />
+              <FaFacebook className="text-xl  hover:text-dark-subtle  text-dark-subtle" />
             </button>
           </Link>
         </div>
         <div>
           <Link to="">
             <button className="shadow-xl flex items-center justify-center p-2 w-10 h-10 rounded-full">
-              <FaInstagram className="text-xl dark:hover:text-dark-subtle hover:text-light-subtle dark:text-dark-subtle text-light-subtle" />
+              <FaInstagram className="text-xl  hover:text-dark-subtle  text-dark-subtle" />
             </button>
           </Link>
         </div>
         <div>
           <Link to="">
             <button className="shadow-xl flex items-center justify-center p-2 w-10 h-10 rounded-full">
-              <FaTwitter className="text-xl dark:hover:text-dark-subtle hover:text-light-subtle dark:text-dark-subtle text-light-subtle" />
+              <FaTwitter className="text-xl  hover:text-dark-subtle  text-dark-subtle" />
             </button>
           </Link>
         </div>
         <div>
           <Link to="">
             <button className="shadow-xl flex items-center justify-center p-2 w-10 h-10 rounded-full">
-              <FaYoutube className="text-xl dark:hover:text-dark-subtle hover:text-light-subtle dark:text-dark-subtle text-light-subtle" />
+              <FaYoutube className="text-xl  hover:text-dark-subtle  text-dark-subtle" />
             </button>
           </Link>
         </div>
         <div>
           <Link to="">
             <button className="shadow-xl flex items-center justify-center p-2 w-10 h-10 rounded-full">
-              <SiGmail className="text-xl dark:hover:text-dark-subtle hover:text-light-subtle dark:text-dark-subtle text-light-subtle" />
+              <SiGmail className="text-xl  hover:text-dark-subtle  text-dark-subtle" />
             </button>
           </Link>
         </div>
       </div>
-      <p className="mt-8 text-center dark:text-dark-subtle text-light-subtle">
+      <p className="mt-8 text-center  text-dark-subtle">
         <Link to="#">www.educationtoday.co</Link>
       </p>
     </div>
