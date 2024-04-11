@@ -11,40 +11,40 @@ const SocialPlugin = () => {
         <div>
           <Link to="">
             <button className="shadow-xl flex items-center justify-center p-2 w-10 h-10 rounded-full">
-              <FaFacebook className="text-xl hover:text-[#418160]" />
+              <FaFacebook className="text-xl dark:hover:text-dark-subtle hover:text-light-subtle dark:text-dark-subtle text-light-subtle" />
             </button>
           </Link>
         </div>
         <div>
           <Link to="">
             <button className="shadow-xl flex items-center justify-center p-2 w-10 h-10 rounded-full">
-              <FaInstagram className="text-xl hover:text-[#418160]" />
+              <FaInstagram className="text-xl dark:hover:text-dark-subtle hover:text-light-subtle dark:text-dark-subtle text-light-subtle" />
             </button>
           </Link>
         </div>
         <div>
           <Link to="">
             <button className="shadow-xl flex items-center justify-center p-2 w-10 h-10 rounded-full">
-              <FaTwitter className="text-xl hover:text-[#418160]" />
+              <FaTwitter className="text-xl dark:hover:text-dark-subtle hover:text-light-subtle dark:text-dark-subtle text-light-subtle" />
             </button>
           </Link>
         </div>
         <div>
           <Link to="">
             <button className="shadow-xl flex items-center justify-center p-2 w-10 h-10 rounded-full">
-              <FaYoutube className="text-xl hover:text-[#418160]" />
+              <FaYoutube className="text-xl dark:hover:text-dark-subtle hover:text-light-subtle dark:text-dark-subtle text-light-subtle" />
             </button>
           </Link>
         </div>
         <div>
           <Link to="">
             <button className="shadow-xl flex items-center justify-center p-2 w-10 h-10 rounded-full">
-              <SiGmail className="text-xl hover:text-[#418160]" />
+              <SiGmail className="text-xl dark:hover:text-dark-subtle hover:text-light-subtle dark:text-dark-subtle text-light-subtle" />
             </button>
           </Link>
         </div>
       </div>
-      <p className="mt-8 text-center">
+      <p className="mt-8 text-center dark:text-dark-subtle text-light-subtle">
         <Link to="#">www.educationtoday.co</Link>
       </p>
     </div>

@@ -87,9 +87,9 @@ const Signin = () => {
             onClick={() => setShowPassword((prev) => !prev)}
           >
             {showPassword ? (
-              <FaEye fontSize={24} fill="#418160" />
+              <FaEye fontSize={24} className="dark:text-dark-subtle text-light-subtle"/>
             ) : (
-              <FaEyeSlash fontSize={24} fill="#418160" />
+              <FaEyeSlash fontSize={24}  className="dark:text-dark-subtle text-light-subtle"/>
             )}
           </span>
         </div>
@@ -97,10 +97,10 @@ const Signin = () => {
           <div className="flex items-center gap-x-2">
             <input
               type="checkbox"
-              className="h-4 w-4 rounded-[10px]"
+              className="h-4 w-4 rounded-[10px] bg-transparent"
               id="invalidCheck"
             />
-            <label htmlFor="invalidCheck">Remember Me</label>
+            <label htmlFor="invalidCheck" className="dark:text-dark-subtle text-light-subtle">Remember Me</label>
           </div>
           <CustomLink to="/auth/forgot-password">Forgot Password ?</CustomLink>
         </div>
@@ -108,7 +108,7 @@ const Signin = () => {
           <Button type="submit" busy={isPending}>Sign In</Button>
         </div>
         <div className="flex justify-center items-center mt-4">
-          <p>Don't have an account ?</p>
+          <p className="dark:text-dark-subtle text-light-subtle">Don't have an account ?</p>
           <CustomLink to="/auth/sign-up" className="ml-2">
             Sign Up
           </CustomLink>

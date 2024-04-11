@@ -100,10 +100,10 @@ const EmailVerification = () => {
 
   return (
     <FormContainer className="h-[60vh]">
-      <h2 className="text-center mb-1 text-xl text-[#418160] font-semibold">
+      <h2 className="text-center mb-1 text-xl dark:text-dark-subtle text-light-subtle font-semibold">
         Please Enter the OTP to verify your accout
       </h2>
-      <p className="text-center mb-4 text-[#418160]">
+      <p className="text-center mb-4 dark:text-dark-subtle text-light-subtle">
         OTP has been sent to your email
       </p>
       <form onSubmit={handleSubmit}>
@@ -117,7 +117,7 @@ const EmailVerification = () => {
                 onChange={(e) => handleOtpChange(e, index)}
                 onKeyDown={(e) => handleKeyDown(e, index)}
                 key={index}
-                className="w-12 h-12 text-[#418160] border-2 border-[#418160] focus:border-[#418160] rounded bg-transparent outline-none text-center font-semibold text-xl spin-button-none"
+                className="w-12 h-12 dark:text-dark-subtle text-light-subtle dark:border-dark-subtle border-light-subtle border-2 rounded bg-transparent outline-none text-center font-semibold text-xl spin-button-none"
               />
             );
           })}
@@ -126,7 +126,7 @@ const EmailVerification = () => {
         <div className="mt-4 text-center">
           <p
             onClick={handleClick}
-            className="text-[#418160] font-semibold cursor-pointer transform transition-transform duration-300 hover:scale-110"
+            className="dark:text-dark-subtle text-light-subtle font-semibold cursor-pointer transform transition-transform duration-300 hover:scale-110"
           >
             Resend OTP
           </p>

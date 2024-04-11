@@ -13,20 +13,20 @@ const Sidebar = (props) => {
   return (
     <div className="">
     <div
-      className={`fixed ${isSidebarOpen ? '' : "hidden"} bg-[#000] max-w-full h-[100vh] top-0 right-0 bottom-0 left-0 shadow-md z-50 transition duration-300 ease-in-out opacity-70 `}
+      className={`fixed  ${isSidebarOpen ? '' : "hidden"} bg-[#000] max-w-full h-[100vh] top-0 right-0 bottom-0 left-0 shadow-md z-50 transition duration-300 ease-in-out opacity-70 `}
     ></div>
     <div
-      className={`bg-[#fff] ${isSidebarOpen ? "max-w-[400px]" : "max-w-[0px]"}  fixed top-0 right-0 h-[100vh] shadow-md z-50 transition-all duration-300 ease-out`}
+      className={`bg-[#fff] ${isSidebarOpen ? "max-w-[400px]" : "max-w-[0px]"}  fixed dark:bg-primary bg-secondary top-0 right-0 h-[100vh] shadow-md z-50 transition-all duration-300 ease-out`}
     >
       <div className="text-right">
         <button onClick={toggleSidebar} className="px-2 mr-8 mt-4 py-1">
-          <MdClose className="text-2xl" />
+          <MdClose className="text-2xl dark:text-dark-subtle text-light-subtle" />
         </button>
       </div>
       <div className="p-10">
         <div className="mt-1">
           <Link to="/">
-            <h1 className="text-2xl sm:text-2xl md:text-3xl lg:text-3xl xl:text3xl font-bold uppercase bg-gradient-to-r from-[#34433b] via-[#418160] to-[#236543] inline-block text-transparent bg-clip-text">
+            <h1 className="text-2xl sm:text-2xl md:text-3xl lg:text-3xl xl:text3xl font-bold uppercase dark:bg-dark-subtle bg-light-subtle inline-block text-transparent bg-clip-text">
               EducationToday
             </h1>
           </Link>

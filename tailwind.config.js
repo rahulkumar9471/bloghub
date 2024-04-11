@@ -7,10 +7,10 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#171717',
-        secondary: '#272727',
-        'dark-subtle': 'rgba(255,255,255,0.5)',
-        'light-subtle': 'rgba(39,39,39,0.5)',
+        primary: 'hsl(228, 5%, 15%)',
+        secondary: '#FFF',
+        'dark-subtle': 'hsl(228, 5%, 80%)',
+        'light-subtle': '#222',
       }
     },
   },

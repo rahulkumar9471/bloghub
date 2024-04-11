@@ -26,9 +26,9 @@ const ConfirmPassword = () => {
             onClick={() => setShowPassword((prev) => !prev)}
           >
             {showPassword ? (
-              <FaEye fontSize={24} fill="#418160" />
+              <FaEye fontSize={24} fill="hsl(228, 5%, 80%)"/>
             ) : (
-              <FaEyeSlash fontSize={24} fill="#418160" />
+              <FaEyeSlash fontSize={24} fill="hsl(228, 5%, 80%)"/>
             )}
           </span>
         </div>

@@ -57,7 +57,7 @@ const ForgotPassword = () => {
           <Button type="submit">Send Link</Button>
         </div>
         <div className="flex justify-center items-center mt-4">
-          <p>Do you have an account ?</p>
+          <p className="dark:text-dark-subtle text-light-subtle">Do you have an account ?</p>
           <CustomLink to="/auth/sign-in" className="ml-2">
             Sign In
           </CustomLink>

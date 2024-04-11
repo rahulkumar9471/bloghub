@@ -96,6 +96,7 @@ const Signup = () => {
           onChange={handleChange}
         />
         <FromInput
+          className="spin-button-none"
           type="number"
           lable="Mobile No."
           placeholder="Mobile No."
@@ -117,9 +118,9 @@ const Signup = () => {
             onClick={() => setShowPassword((prev) => !prev)}
           >
             {showPassword ? (
-              <FaEye fontSize={24} fill="#418160" />
+              <FaEye fontSize={24} className="dark:text-dark-subtle text-light-subtle"/>
             ) : (
-              <FaEyeSlash fontSize={24} fill="#418160" />
+              <FaEyeSlash fontSize={24} className="dark:text-dark-subtle text-light-subtle"/>
             )}
           </span>
         </div>
@@ -127,7 +128,7 @@ const Signup = () => {
           <Button type="submit">Sign Up</Button>
         </div>
         <div className="flex justify-center items-center mt-4">
-          <p>Do you have an account ?</p>
+          <p className="dark:text-dark-subtle text-light-subtle">Do you have an account ?</p>
           <CustomLink to="/auth/sign-in" className="ml-2">
             Sign In
           </CustomLink>
