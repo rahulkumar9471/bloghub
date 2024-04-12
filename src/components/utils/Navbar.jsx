@@ -37,7 +37,7 @@ const Navbar = () => {
 
   return (
     <header
-      className={`dark:bg-primary bg-secondary w-full z-50 shadow-md dark:border-dark-subtle  ${
+      className={`dark:bg-primary bg-secondary w-full z-50 shadow-md dark:border-dark-subtle border-b-[1px]  ${
         isHeaderFixed ? "fixed top-0" : ""
       }`}
     >

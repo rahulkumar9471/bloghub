@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import FormContainer from "../form/FormContainer";
 import Title from "../form/Title";
 import FormInput from "../form/FormInput";
-import Button from "../user/Button";
+import Button from "../utils/Button";
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
 
 const ConfirmPassword = () => {

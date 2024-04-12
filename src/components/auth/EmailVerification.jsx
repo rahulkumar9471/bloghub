@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import FormContainer from "../form/FormContainer";
-import Button from "../user/Button";
+import Button from "../utils/Button";
 import { useLocation, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { resendOtp, verifyUserEmail } from "../../api/auth";

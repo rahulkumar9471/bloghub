@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import FormContainer from "../form/FormContainer";
 import Title from "../form/Title";
 import FormInput from "../form/FormInput";
-import Button from "../user/Button";
-import CustomLink from "../user/CustomLink";
+import Button from "../utils/Button";
+import CustomLink from "../utils/CustomLink";
 import toast from "react-hot-toast";
 import { forgotPassord } from "../../api/auth";
 
