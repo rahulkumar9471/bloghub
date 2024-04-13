@@ -16,30 +16,27 @@ const validateEmail = ({ email }) => {
 };
 
 const ForgotPassword = () => {
-
   const [email, setEmail] = useState({
-    email: ''
+    email: "",
   });
 
-  const handleChange = ({target}) => {
-    const {value, name} = target;
-    setEmail({ ...email , [name]: value});
-  }
+  const handleChange = ({ target }) => {
+    const { value, name } = target;
+    setEmail({ ...email, [name]: value });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const {ok, error} = validateEmail(email);
-    if(!ok) return toast.error(error);
+    const { ok, error } = validateEmail(email);
+    if (!ok) return toast.error(error);
 
     var response = await forgotPassord(email);
 
-    if(response.error) return toast.error(response.error);
+    if (response.error) return toast.error(response.error);
 
-    
-    if(response.message) return toast.success(response.message);
-
-  }
+    if (response.message) return toast.success(response.message);
+  };
 
   return (
     <FormContainer className="h-[60vh]">
@@ -57,7 +54,9 @@ const ForgotPassword = () => {
           <Button type="submit">Send Link</Button>
         </div>
         <div className="flex justify-center items-center mt-4">
-          <p className="dark:text-dark-subtle text-light-subtle">Do you have an account ?</p>
+          <p className="dark:text-dark-subtle text-light-subtle">
+            Do you have an account ?
+          </p>
           <CustomLink to="/auth/sign-in" className="ml-2">
             Sign In
           </CustomLink>
