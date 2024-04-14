@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import FormContainer from "../form/FormContainer";
 import Title from "../form/Title";
 import FormInput from "../form/FormInput";
@@ -6,6 +6,8 @@ import Button from "../utils/Button";
 import CustomLink from "../utils/CustomLink";
 import toast from "react-hot-toast";
 import { forgotPassord } from "../../api/auth";
+import { useAuth } from "../../hooks";
+import { useNavigate } from "react-router-dom";
 
 const validateEmail = ({ email }) => {
   const isValidEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -16,6 +18,15 @@ const validateEmail = ({ email }) => {
 };
 
 const ForgotPassword = () => {
+
+  const navigate = useNavigate();
+  const  { authInfo } = useAuth();
+  const { isLoggedIn } = authInfo;
+
+  useEffect(() => {
+    if(isLoggedIn) navigate('/')
+  }, [isLoggedIn])
+
   const [email, setEmail] = useState({
     email: "",
   });
