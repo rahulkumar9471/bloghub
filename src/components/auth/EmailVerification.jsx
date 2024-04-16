@@ -21,7 +21,9 @@ const EmailVerification = () => {
   const [otp, setOtp] = useState(new Array(OTP_LENGTH).fill(""));
   const [activeOtpIndex, setactiveOtpIndex] = useState(0);
   const { isAuth, authInfo } = useAuth();
-  const { isLoggedIn } = authInfo;
+  const { isLoggedIn, profile } = authInfo;
+  const isVerified = profile?.isVerified;
+
   const inputRef = useRef();
 
   const { state } = useLocation();
@@ -63,9 +65,9 @@ const EmailVerification = () => {
   };
 
   useEffect(() => {
-    if (!user) navigate("/not-found");
-    if (isLoggedIn) navigate("/");
-  }, [user, isLoggedIn]);
+    if (!user) navigate("/not-found"); 
+    if (isLoggedIn && isVerified) navigate("/");
+  }, [user, isLoggedIn, isVerified]);
 
   const focusNextInputField = (index) => {
     setactiveOtpIndex(index + 1);

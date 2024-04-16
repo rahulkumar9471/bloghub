@@ -5,15 +5,12 @@ import { FaAward, FaBlogger } from "react-icons/fa6";
 import { FaBookReader, FaRegBookmark, FaPlayCircle } from "react-icons/fa";
 import NumberCounter from "number-counter";
 import PostCard from "../utils/PostCard";
+import { useAuth } from "../../hooks";
 
 const Home = () => {
-  const postCards = [];
 
-  const latests = ["1", "2", "3", "4", "5", "6", "7", "8"];
-  for (let i = 0; i < latests.length; i++) {
-    const latest = latests[i];
-    postCards.push(<PostCard key={latest.key} />);
-  }
+  const {authInfo} = useAuth();
+  // console.log(authInfo);
 
   return (
     <>
@@ -112,7 +109,14 @@ const Home = () => {
             <div className="lg:flex gap-x-10">
               <div className="container mx-auto">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-6">
-                  {postCards}
+                  <PostCard />
+                  <PostCard />
+                  <PostCard />
+                  <PostCard />
+                  <PostCard />
+                  <PostCard />
+                  <PostCard />
+                  <PostCard />
                 </div>
               </div>
             </div>

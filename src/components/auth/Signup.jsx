@@ -11,7 +11,7 @@ import { createUser } from "../../api/auth";
 import { useAuth } from "../../hooks";
 
 const validateUserInfo = ({ name, email, mobile, password }) => {
-  const isValidEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/; 
+  const isValidEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
   const isValidName = /^[a-z A-Z]+$/;
   const isValidMobile = /^[6-9]\d{9}$/;
 
@@ -28,8 +28,9 @@ const validateUserInfo = ({ name, email, mobile, password }) => {
       error: "Invalid mobile number!",
     };
 
-  if(!password.trim()) return { ok: false, error: "Invalid password"};
-  if(password.length < 8 ) return { ok: false, error: "Password must be at least 8 characters!"}
+  if (!password.trim()) return { ok: false, error: "Invalid password" };
+  if (password.length < 8)
+    return { ok: false, error: "Password must be at least 8 characters!" };
 
   return { ok: true };
 };
@@ -57,24 +58,31 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const { ok, error } = validateUserInfo(userinfo);
+    try {
+      const { ok, error } = validateUserInfo(userinfo);
 
-    if (!ok) return toast.error(error);
+      if (!ok) return toast.error(error);
 
-    var response = await createUser(userinfo);
+      var response = await createUser(userinfo);
 
-    if(response.error) return toast.error(response.error);
+      if (response.error) return toast.error(response.error);
 
-    navigate('/auth/verification', {
-      state: response.user,
-      replace: true
-    })
+      navigate("/auth/verification", {
+        state: response.user,
+        replace: true,
+      });
 
+      
+
+    } catch (error) {
+      console.error("An error occurred while Sign Up:", error);
+      toast.error("An unexpected error occurred. Please try again later.");
+    }
   };
 
   useEffect(() => {
-    if(isLoggedIn) navigate('/');
-  },[isLoggedIn])
+    if (isLoggedIn) navigate("/");
+  }, [isLoggedIn]);
 
   return (
     <FormContainer className="h-screen">
@@ -118,9 +126,15 @@ const Signup = () => {
             onClick={() => setShowPassword((prev) => !prev)}
           >
             {showPassword ? (
-              <FaEye fontSize={24} className="dark:text-dark-subtle text-light-subtle"/>
+              <FaEye
+                fontSize={24}
+                className="dark:text-dark-subtle text-light-subtle"
+              />
             ) : (
-              <FaEyeSlash fontSize={24} className="dark:text-dark-subtle text-light-subtle"/>
+              <FaEyeSlash
+                fontSize={24}
+                className="dark:text-dark-subtle text-light-subtle"
+              />
             )}
           </span>
         </div>
@@ -128,7 +142,9 @@ const Signup = () => {
           <Button type="submit">Sign Up</Button>
         </div>
         <div className="flex justify-center items-center mt-4">
-          <p className="dark:text-dark-subtle text-light-subtle">Do you have an account ?</p>
+          <p className="dark:text-dark-subtle text-light-subtle">
+            Do you have an account ?
+          </p>
           <CustomLink to="/auth/sign-in" className="ml-2">
             Sign In
           </CustomLink>
