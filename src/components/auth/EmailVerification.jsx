@@ -23,7 +23,7 @@ const EmailVerification = () => {
   const { isAuth, authInfo } = useAuth();
   const { isLoggedIn, profile } = authInfo;
   const isVerified = profile?.isVerified;
-
+ 
   const inputRef = useRef();
 
   const { state } = useLocation();
@@ -64,10 +64,6 @@ const EmailVerification = () => {
     toast.success(message);
   };
 
-  useEffect(() => {
-    if (!user) navigate("/not-found"); 
-    if (isLoggedIn && isVerified) navigate("/");
-  }, [user, isLoggedIn, isVerified]);
 
   const focusNextInputField = (index) => {
     setactiveOtpIndex(index + 1);
@@ -99,6 +95,11 @@ const EmailVerification = () => {
   useEffect(() => {
     inputRef.current?.focus();
   }, [activeOtpIndex]);
+  
+  useEffect(() => {
+    if (!user) navigate("/not-found"); 
+    if (isLoggedIn && isVerified) navigate("/");
+  }, [user, isLoggedIn, isVerified]);
 
   return (
     <FormContainer className="h-[60vh]">

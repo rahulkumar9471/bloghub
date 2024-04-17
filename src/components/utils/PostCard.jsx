@@ -17,10 +17,10 @@ const PostCard = () => {
             <FaRegBookmark fontSize={20} fill="#fff" />
           </span>
         </div>
-        <div className="px-4 py-4 dark:text-dark-subtle text-light-subtle">
+        <div className="px-4 py-4 dark:text-dark-subtle text-tertiary">
           <div className="">
             <Link to={`/Blog`}>
-              <h1 className="text-2xl font-bold mb-2">What is Lorem Ipsum?</h1>
+              <h1 className="text-xl md:text-2xl  font-bold mb-2 hover:text-light-subtle">What is Lorem Ipsum?</h1>
             </Link>
             <div className="flex justify-between items-center">
               <p className="flex justify-start items-center gap-x-1 mt-1">

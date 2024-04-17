@@ -8,7 +8,7 @@ const Footer = () => {
   return (
     <>
       <div className="relative h-28 dark:bg-primary bg-secondary">
-        <div className="absolute w-full px-[2rem] sm:px-[4rem] md:px-[4rem] lg:px-[6rem] xl:px-[8rem] bottom-[-80px]">
+        <div className="absolute w-full px-[1rem] sm:px-[2rem] md:px-[4rem] lg:px-[6rem] xl:px-[8rem] bottom-[-80px]">
           <div className="bg-[#000] text-[#fff] p-8 rounded-[10px]">
             <div className="flex flex-wrap justify-between items-center">
               <div className="flex justify-start items-center">
@@ -21,7 +21,7 @@ const Footer = () => {
               <div className="flex">
                 <input
                   type="text"
-                  className="bg-transparent border-b-2 border-[#fff] w-[300px] text-[#fff] p-2 focus:outline-none"
+                  className="bg-transparent border-b-2 border-[#fff]  text-[#fff] p-2 focus:outline-none"
                   placeholder="Email Address...."
                 />
                 <button className="text-3xl">

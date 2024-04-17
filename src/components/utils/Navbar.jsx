@@ -15,18 +15,16 @@ const Navbar = () => {
   };
   const [isHeaderFixed, setIsHeaderFixed] = useState(false);
   const { authInfo, handleLogout } = useAuth();
+ 
   const { isLoggedIn } = authInfo;
   const isVerified = authInfo.profile?.isVerified;
-
-
+ 
   const navigate = useNavigate();
-  const navigateToVerification = () => {
-    // navigate("auth/verification", { state: { user: authInfo.profile } });
-    
+  const navigateToVerification = () => { 
+
     navigate("/auth/verification", {
-      state: authInfo.profile, 
+      state: authInfo.profile,
     });
-   
   };
 
   useEffect(() => {
@@ -55,7 +53,7 @@ const Navbar = () => {
         }`}
       >
         {isLoggedIn && !isVerified ? (
-          <div className="bg-primary text-dark-subtle w-full p-2 text-center border-b-[1px] border-light-subtle">
+          <div className="bg-light-subtle text-dark-subtle w-full p-2 text-center border-b-[1px] border-light-subtle">
             <p className="text-sm">
               It looks like you haven't verified your account.{" "}
               <button
@@ -67,10 +65,10 @@ const Navbar = () => {
             </p>
           </div>
         ) : null}
-        <nav className="flex w-full justify-between px-[2rem] sm:px-[4rem] md:px-[4rem] lg:px-[6rem] xl:px-[8rem] py-4 md:py-6 items-center">
+        <nav className="flex w-full justify-between px-[1rem] sm:px-[3rem] md:px-[4rem] lg:px-[6rem] xl:px-[8rem] py-4 md:py-6 items-center">
           <div>
             <Link to="/">
-              <h1 className="text-xl sm:text-xl md:text-2xl lg:text-2xl xl:text-2xl font-bold uppercase dark:bg-dark-subtle bg-light-subtle inline-block text-transparent bg-clip-text">
+              <h1 className="text-xl sm:text-xl md:text-2xl lg:text-2xl xl:text-2xl font-bold uppercase dark:bg-secondary bg-gradient-to-r from-[#34433b] via-[#418160] to-[#236543] inline-block text-transparent bg-clip-text">
                 EducationToday
               </h1>
             </Link>
@@ -90,16 +88,16 @@ const Navbar = () => {
             </span>
           </div>
           <div>
-            <ul className="flex gap-x-6 md:gap-x-4 lg:gap-x-6 xl:gap-x-8 font-semibold items-center">
+            <ul className="flex gap-x-4 md:gap-x-4 lg:gap-x-6 xl:gap-x-8 font-semibold items-center">
               <li className="block">
                 <button
                   onClick={toggleTheme}
                   className="p-2 rounded-[4px] border-2 dark:border-dark-subtle dark:text-dark-subtle dark:hover:bg-dark-subtle dark:hover:text-light-subtle border-light-subtle text-light-subtle hover:bg-light-subtle hover:text-dark-subtle"
                 >
                   {theme === "dark" ? (
-                    <IoMoon size={24} />
+                    <IoMoon size={20} />
                   ) : (
-                    <IoSunnyOutline size={24} />
+                    <IoSunnyOutline size={20} />
                   )}
                 </button>
               </li>
@@ -147,7 +145,7 @@ const Navbar = () => {
                   onClick={toggleSidebar}
                   className="p-2 rounded-[4px] border-2 dark:border-dark-subtle dark:text-dark-subtle dark:hover:bg-dark-subtle dark:hover:text-light-subtle border-light-subtle text-light-subtle hover:bg-light-subtle hover:text-dark-subtle"
                 >
-                  <FaBars size={24} />
+                  <FaBars size={20} />
                 </button>
               </li>
             </ul>

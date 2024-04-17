@@ -15,13 +15,13 @@ const Home = () => {
   return (
     <>
       <section className="dark:bg-primary bg-secondary">
-        <div className="px-[2rem] sm:px-[4rem] md:px-[4rem] lg:px-[6rem] xl:px-[8rem] py-6">
+        <div className="px-[1rem] sm:px-[2rem] md:px-[4rem] lg:px-[6rem] xl:px-[8rem] py-6">
           <div
-            className="w-full h-[500px] bg-no-repeat bg-center bg-cover rounded-[4px] relative shadow-lg"
+            className="w-full h-[400px] md:h-[500px] bg-no-repeat bg-center bg-cover rounded-[4px] relative shadow-lg"
             style={{ backgroundImage: `url(${banner})` }}
           >
-            <div className="bg-light-subtle h-[500px] rounded-[4px] opacity-60"></div>
-            <div className="absolute top-10 left-0 right-0 p-10">
+            <div className="bg-[#203656] h-[400px] md:h-[500px] rounded-[4px] opacity-60"></div>
+            <div className="absolute top-10 left-0 right-0 p-4 md:p-10">
               <div className="w-full sm:w-full md:w-full lg:w-6/12 text-center sm:text-center md:text-center lg:text-center">
                 <h1 className="text-secondary text-2xl sm:text-3xl md:text-3xl lg:text-4xl xl:text-4xl font-bold">
                   Find Our Best Online Educational
@@ -32,7 +32,7 @@ const Home = () => {
                   react-icons, which utilizes ES6 imports that allows you to
                   include only the icons that your project is using.
                 </p>
-                <div className="mt-8 flex justify-center gap-x-10">
+                <div className="mt-8 flex justify-center gap-x-4 md:gap-x-10">
                   <button className="px-4 py-2 border-2 border-dark-subtle text-dark-subtle hover:bg-dark-subtle hover:text-light-subtle rounded focus:outline-none">
                     Learn More
                   </button>
@@ -47,60 +47,60 @@ const Home = () => {
             </div>
           </div>
         </div>
-        <div className="px-[2rem] sm:px-[4rem] md:px-[4rem] lg:px-[6rem] xl:px-[8rem] py-8">
-          <div className="flex flex-wrap justify-around items-center text-center">
+        <div className="px-[1rem] sm:px-[2rem] md:px-[4rem] lg:px-[6rem] xl:px-[8rem] py-8">
+          <div className="sm:flex justify-around items-center text-center">
             <div className="flex justify-center items-center gap-x-4 text-left my-4">
               <button className="shadow-xl dark:bg-tertiary flex items-center justify-center p-4 w-18 h-18 rounded-full">
-                <FaAward size={48} className="text-xl text-[#6366F1]" />
+                <FaAward size={48} className="text-xl dark:text-secondary text-light-subtle" />
               </button>
               <div>
-                <h3 className="text-xl font-bold dark:text-dark-subtle text-light-subtle ">
+                <h3 className="text-xl font-bold dark:text-dark-subtle text-tertiary ">
                   <NumberCounter end={20000} delay={4} postFix="+" />
                 </h3>
-                <p className="text-l font-medium dark:text-dark-subtle text-light-subtle ">
+                <p className="text-l font-medium dark:text-dark-subtle text-tertiary ">
                   Special Course
                 </p>
               </div>
             </div>
             <div className="flex justify-center items-center gap-x-4 text-left my-4">
               <button className="shadow-xl dark:bg-tertiary flex items-center justify-center p-4 w-18 h-18 rounded-full">
-                <FaBlogger size={48} className="text-xl text-[#6366F1]" />
+                <FaBlogger size={48} className="text-xl dark:text-secondary text-light-subtle" />
               </button>
               <div>
-                <h3 className="text-xl font-bold dark:text-dark-subtle text-light-subtle  ">
+                <h3 className="text-xl font-bold dark:text-dark-subtle text-tertiary  ">
                   <NumberCounter end={10000} delay={4} postFix="+" />
                 </h3>
-                <p className="text-l font-medium dark:text-dark-subtle text-light-subtle ">
+                <p className="text-l font-medium dark:text-dark-subtle text-tertiary ">
                   Blogs
                 </p>
               </div>
             </div>
             <div className="flex justify-center items-center gap-x-4 text-left my-4">
               <button className="shadow-xl dark:bg-tertiary flex items-center justify-center p-4 w-18 h-18 rounded-full">
-                <FaBookReader size={48} className="text-xl text-[#6366F1]" />
+                <FaBookReader size={48} className="text-xl dark:text-secondary text-light-subtle" />
               </button>
               <div>
-                <h3 className="text-xl font-bold dark:text-dark-subtle text-light-subtle  ">
+                <h3 className="text-xl font-bold dark:text-dark-subtle text-tertiary  ">
                   <NumberCounter end={1000} delay={4} postFix="+" />
                 </h3>
-                <p className="text-l font-medium dark:text-dark-subtle text-light-subtle ">
+                <p className="text-l font-medium dark:text-dark-subtle text-tertiary ">
                   Users
                 </p>
               </div>
             </div>
           </div>
         </div>
-        <div className="px-[2rem] sm:px-[4rem] md:px-[4rem] lg:px-[6rem] xl:px-[8rem] py-8">
-          <div className="flex justify-between items-center">
+        <div className="px-[1rem] sm:px-[2rem] md:px-[4rem] lg:px-[6rem] xl:px-[8rem] py-8">
+          <div className="flex justify-center md:justify-between items-center">
             <div>
-              <h2 className="text-2xl md:text-3xl font-semibold dark:text-dark-subtle text-light-subtle">
+              <h2 className="text-xl md:text-3xl font-semibold dark:text-dark-subtle text-tertiary">
                 Our Popular Courses
               </h2>
-              <div className="border-b-2 mt-4 dark:border-dark-subtle border-light-subtle w-4/12"></div>
+              <div className="border-b-2 mt-4 dark:border-dark-subtle border-tertiary mx-auto md:mx-0 w-4/12"></div>
             </div>
             <Link
               to="/"
-              className="px-4 py-2 border-2 dark:border-dark-subtle dark:text-dark-subtle dark:hover:bg-dark-subtle dark:hover:text-light-subtle border-light-subtle text-light-subtle hover:bg-light-subtle hover:text-dark-subtle rounded focus:outline-none"
+              className="hidden md:block px-4 py-2 border-2 dark:border-dark-subtle dark:text-dark-subtle dark:hover:bg-dark-subtle dark:hover:text-light-subtle border-light-subtle text-light-subtle hover:bg-light-subtle hover:text-dark-subtle rounded focus:outline-none"
             >
               All Courses
             </Link>
@@ -123,14 +123,14 @@ const Home = () => {
           </div>
         </div>
       </section>
-      <section className="bg-light-subtle">
-        <div className="px-[2rem] sm:px-[4rem] md:px-[4rem] lg:px-[6rem] xl:px-[8rem] py-6">
+      <section className="bg-[#418160]">
+        <div className="px-[1rem] sm:px-[2rem] md:px-[4rem] lg:px-[6rem] xl:px-[8rem] py-6">
           <div className="lg:flex gap-x-10">
             <div className="container mx-auto">
               <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-x-6">
                 <div className="md:flex justify-center items-center gap-x-14">
                   <div className="w-full sm:w-full md:w-full sm:text-center md:text-center lg:text-left">
-                    <h2 className="text-3xl sm:text-3xl md:text-5xl font-semibold text-dark-subtle">
+                    <h2 className="text-2xl sm:text-2xl md:text-5xl font-semibold text-dark-subtle">
                       Find Your Course that make Bright Future
                     </h2>
                     <div className="border-b-4 mt-4 border-dark-subtle sm:w-10/12 md:w-10/12 lg:w-3/12 sm:mx-auto md:mx-auto lg:mx-0"></div>
@@ -152,9 +152,9 @@ const Home = () => {
                     </button>
                   </div>
                 </div>
-                <div className="md:flex justify-center items-center gap-x-14">
+                <div className="md:flex justify-center items-center gap-x-14 mt-10 md:mt-0">
                   <div className="w-full sm:w-full md:w-full text-center sm:text-center md:text-center lg:text-center">
-                    <div className="p-10 flex justify-center">
+                    <div className="p-2  flex justify-center">
                       <div className="relative flex justify-center items-center h-[400px] w-[350px] overflow-hidden rounded-[4px]">
                         <img
                           src={banner}
