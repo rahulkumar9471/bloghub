@@ -6,15 +6,14 @@ import CustomLink from "../utils/CustomLink";
 import Button from "../utils/Button";
 import Title from "../form/Title";
 import toast from "react-hot-toast";
-import { signInUser } from "../../api/auth"; 
+import { signInUser } from "../../api/auth";
 import { useAuth } from "../../hooks";
 import { useNavigate } from "react-router-dom";
 
 const validateUserInfo = ({ email, password }) => {
   const isValidEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
   if (!email.trim()) return { ok: false, error: "Email is Missing." };
-  if (!isValidEmail.test(email))
-    return { ok: false, error: "Invalid email" };
+  if (!isValidEmail.test(email)) return { ok: false, error: "Invalid email" };
 
   if (!password.trim()) return { ok: false, error: "Invalid password." };
   if (password.length < 8)
@@ -24,12 +23,11 @@ const validateUserInfo = ({ email, password }) => {
 };
 
 const Signin = () => {
-
   const [showPassword, setShowPassword] = useState(false);
-  const [ userInfo, setUserInfo ] = useState({
+  const [userInfo, setUserInfo] = useState({
     email: "",
-    password: ""
-  }); 
+    password: "",
+  });
 
   const navigate = useNavigate();
 
@@ -38,28 +36,31 @@ const Signin = () => {
 
   const handleChange = ({ target }) => {
     const { value, name } = target;
-    setUserInfo({ ...userInfo, [name]: value})
-  }
+    setUserInfo({ ...userInfo, [name]: value });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    try {
+      const { ok, error } = validateUserInfo(userInfo);
+      if (!ok) return toast.error(error);
 
-    const { ok, error } = validateUserInfo(userInfo);
-    if (!ok) return toast.error(error);
+      handleLogin(userInfo.email, userInfo.password);
 
-    handleLogin(userInfo.email, userInfo.password)
+      var response = await signInUser(userInfo);
 
-    var response = await signInUser(userInfo);
+      if (response.error) return toast.error(response.error);
 
-    if(response.error) return toast.error(response.error);
-
-    if(response.message) return toast.success(response.message);
-
-  }
+      if (response.message) return toast.success(response.message);
+    } catch (error) {
+      console.error("An error occurred while Sign in Form:", error);
+      toast.error("An unexpected error occurred. Please try again later.");
+    }
+  };
 
   useEffect(() => {
-    if(isLoggedIn) navigate('/');
-  },[isLoggedIn])
+    if (isLoggedIn) navigate("/");
+  }, [isLoggedIn]);
 
   return (
     <FormContainer className="h-[80vh]">
@@ -87,9 +88,15 @@ const Signin = () => {
             onClick={() => setShowPassword((prev) => !prev)}
           >
             {showPassword ? (
-              <FaEye fontSize={24} className="dark:text-dark-subtle text-light-subtle"/>
+              <FaEye
+                fontSize={24}
+                className="dark:text-dark-subtle text-light-subtle"
+              />
             ) : (
-              <FaEyeSlash fontSize={24}  className="dark:text-dark-subtle text-light-subtle"/>
+              <FaEyeSlash
+                fontSize={24}
+                className="dark:text-dark-subtle text-light-subtle"
+              />
             )}
           </span>
         </div>
@@ -100,15 +107,24 @@ const Signin = () => {
               className="h-4 w-4 rounded-[10px] bg-transparent"
               id="invalidCheck"
             />
-            <label htmlFor="invalidCheck" className="dark:text-dark-subtle text-light-subtle">Remember Me</label>
+            <label
+              htmlFor="invalidCheck"
+              className="dark:text-dark-subtle text-light-subtle"
+            >
+              Remember Me
+            </label>
           </div>
           <CustomLink to="/auth/forgot-password">Forgot Password ?</CustomLink>
         </div>
         <div className="mt-4">
-          <Button type="submit" busy={isPending}>Sign In</Button>
+          <Button type="submit" busy={isPending}>
+            Sign In
+          </Button>
         </div>
         <div className="flex justify-center items-center mt-4">
-          <p className="dark:text-dark-subtle text-light-subtle">Don't have an account ?</p>
+          <p className="dark:text-dark-subtle text-light-subtle">
+            Don't have an account ?
+          </p>
           <CustomLink to="/auth/sign-up" className="ml-2">
             Sign Up
           </CustomLink>

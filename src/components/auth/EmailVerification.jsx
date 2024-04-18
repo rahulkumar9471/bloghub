@@ -23,7 +23,7 @@ const EmailVerification = () => {
   const { isAuth, authInfo } = useAuth();
   const { isLoggedIn, profile } = authInfo;
   const isVerified = profile?.isVerified;
- 
+
   const inputRef = useRef();
 
   const { state } = useLocation();
@@ -34,36 +34,44 @@ const EmailVerification = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    try {
+      if (!isValidOTP(otp)) {
+        return toast.error("Invalid OTP !");
+      }
 
-    if (!isValidOTP(otp)) {
-      return toast.error("Invalid OTP !");
+      const {
+        error,
+        message,
+        user: userResponse,
+      } = await verifyUserEmail({
+        otp: otp.join(""),
+        userId: user,
+      });
+
+      if (error) return toast.error(error);
+
+      toast.success(message);
+
+      localStorage.setItem("auth-token", userResponse.token);
+      isAuth();
+    } catch (error) {
+      console.error("An error occurred while OTP submition:", error);
+      toast.error("An unexpected error occurred. Please try again later.");
     }
-
-    const {
-      error,
-      message,
-      user: userResponse,
-    } = await verifyUserEmail({
-      otp: otp.join(""),
-      userId: user,
-    });
-
-    if (error) return toast.error(error);
-
-    toast.success(message);
-
-    localStorage.setItem("auth-token", userResponse.token);
-    isAuth();
   };
 
   const handleClick = async (e) => {
-    const { error, message } = await resendOtp({ userId: user });
+    try {
+      const { error, message } = await resendOtp({ userId: user });
 
-    if (error) return toast.error(error);
+      if (error) return toast.error(error);
 
-    toast.success(message);
+      toast.success(message);
+    } catch (error) {
+      console.error("An error occurred while Resend OTP:", error);
+      toast.error("An unexpected error occurred. Please try again later.");
+    }
   };
-
 
   const focusNextInputField = (index) => {
     setactiveOtpIndex(index + 1);
@@ -95,9 +103,9 @@ const EmailVerification = () => {
   useEffect(() => {
     inputRef.current?.focus();
   }, [activeOtpIndex]);
-  
+
   useEffect(() => {
-    if (!user) navigate("/not-found"); 
+    if (!user) navigate("/not-found");
     if (isLoggedIn && isVerified) navigate("/");
   }, [user, isLoggedIn, isVerified]);
 

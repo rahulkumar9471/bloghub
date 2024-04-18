@@ -71,9 +71,6 @@ const Signup = () => {
         state: response.user,
         replace: true,
       });
-
-      
-
     } catch (error) {
       console.error("An error occurred while Sign Up:", error);
       toast.error("An unexpected error occurred. Please try again later.");

@@ -18,14 +18,13 @@ const validateEmail = ({ email }) => {
 };
 
 const ForgotPassword = () => {
-
   const navigate = useNavigate();
-  const  { authInfo } = useAuth();
+  const { authInfo } = useAuth();
   const { isLoggedIn } = authInfo;
 
   useEffect(() => {
-    if(isLoggedIn) navigate('/')
-  }, [isLoggedIn])
+    if (isLoggedIn) navigate("/");
+  }, [isLoggedIn]);
 
   const [email, setEmail] = useState({
     email: "",
@@ -38,15 +37,19 @@ const ForgotPassword = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    try {
+      const { ok, error } = validateEmail(email);
+      if (!ok) return toast.error(error);
 
-    const { ok, error } = validateEmail(email);
-    if (!ok) return toast.error(error);
+      var response = await forgotPassord(email);
 
-    var response = await forgotPassord(email);
+      if (response.error) return toast.error(response.error);
 
-    if (response.error) return toast.error(response.error);
-
-    if (response.message) return toast.success(response.message);
+      if (response.message) return toast.success(response.message);
+    } catch (error) {
+      console.error("An error occurred while Forgot Password:", error);
+      toast.error("An unexpected error occurred. Please try again later.");
+    }
   };
 
   return (
