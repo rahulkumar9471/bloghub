@@ -10,8 +10,16 @@ import NotFound from './components/pages/NotFound';
 import Sidebar from './components/utils/Sidebar';
 import ForgotPassword from './components/auth/ForgotPassword'; 
 import ConfirmPassword from './components/auth/ConfirmPassword';
+import { useAuth } from './hooks';
+import AdminNavigator from './navigator/AdminNavigator';
 
 function App() { 
+
+  const { authInfo } = useAuth();
+  const isAdmin = authInfo.profile?.role === 'admin';
+ 
+  if(isAdmin) return <AdminNavigator />
+
   return (
     <>
       <Navbar   />
