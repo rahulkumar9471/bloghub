@@ -6,8 +6,10 @@ import { Link } from "react-router-dom";
 import { FiLogOut } from "react-icons/fi";
 
 const Navbar = () => {
-  const { handleLogout, authInfo } = useAuth();
+  const { authInfo, handleLogout } = useAuth();
   const [showOption, setShowOption] = useState(false);
+
+  const options = [{ title: "Add Movie" }, { title: "Add Actor" }];
   return (
     <header
       className={`dark:bg-primary bg-secondary w-full z-50 shadow-md dark:border-dark-subtle border-b-[1px] fixed top-0"
@@ -49,6 +51,7 @@ const Navbar = () => {
             <CreateOption
               visible={showOption}
               onClose={() => setShowOption(false)}
+              handleLogout={handleLogout}
             />
           </div>
         </div>
@@ -57,27 +60,43 @@ const Navbar = () => {
   );
 };
 
-const CreateOption = ({ visible, onClose }) => {
+const CreateOption = ({ handleLogout, visible, onClose }) => {
   const container = useRef();
+  const containerID = "options-container";
   useEffect(() => {
     const handleClose = (e) => {
-      if (!visible) return ;
-      console.log(container);
-      container.current.classList.remove("animate-scale");
-      container.current.classList.add("animate-scale-reverse");
+      if (!visible) return;
+      const { parentElement, id } = e.target;
+
+      if (parentElement.id === containerID || id === containerID) return;
+
+      if (container.current) {
+        if (!container.current.classList.contains("animate-scale"))
+          container.current.classList.add("animate-scale-reverse");
+      }
     };
 
     document.addEventListener("click", handleClose);
     return () => {
-      document.removeEventListener("click", handleClose)                                  ;
+      document.removeEventListener("click", handleClose);
     };
   }, [visible]);
+
+  // const handleClick = (fn) => {
+  //   fn();
+  //   onClose();
+  // };
 
   if (!visible) return null;
   return (
     <div
+      id={containerID}
       ref={container}
       className="absolute right-0 top-12 flex flex-col py-4 w-[140px] text-center bg-[#FFF] drop-shadow-lg rounded-md animate-scale"
+      onAnimationEnd={(e) => {
+        if (e.target.classList.contains("animate-scale-reverse")) onClose();
+        e.target.classList.remove("animate-scale");
+      }}
     >
       <Option
         onClick={onClose}
@@ -87,7 +106,7 @@ const CreateOption = ({ visible, onClose }) => {
         <span>Profile</span>
       </Option>
       <Option
-        onClick={onClose}
+        onClick={handleLogout}
         className="flex justify-center items-center space-x-2"
       >
         <FiLogOut />
