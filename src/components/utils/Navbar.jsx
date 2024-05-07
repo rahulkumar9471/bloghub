@@ -3,43 +3,29 @@ import { Link, useNavigate } from "react-router-dom";
 import { CiSearch } from "react-icons/ci";
 import { FaBars } from "react-icons/fa";
 import CustomLink from "./CustomLink";
-import { useAuth, useTheme, useSidebar } from "../../hooks";
+import { useAuth, useTheme, useSidebar, useNavFixed } from "../../hooks";
 import { IoSunnyOutline, IoMoon } from "react-icons/io5";
 
 const Navbar = () => {
   const { toggleTheme, theme } = useTheme();
+  const { isHeaderFixed, navhidden } = useNavFixed();
   const { toggleSidebar } = useSidebar();
   const [isOpen, setIsOpen] = useState(false);
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
-  const [isHeaderFixed, setIsHeaderFixed] = useState(false);
+
   const { authInfo, handleLogout } = useAuth();
- 
+
   const { isLoggedIn } = authInfo;
   const isVerified = authInfo.profile?.isVerified;
- 
-  const navigate = useNavigate();
-  const navigateToVerification = () => { 
 
+  const navigate = useNavigate();
+  const navigateToVerification = () => {
     navigate("/auth/verification", {
       state: authInfo.profile,
     });
   };
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      setIsHeaderFixed(
-        scrollPosition > document.documentElement.clientHeight * 0.2
-      );
-    };
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
 
   useEffect(() => {
     setIsOpen(false);
@@ -132,12 +118,14 @@ const Navbar = () => {
                     )}
                   </div>
                 ) : (
-                  <Link
-                    to="/auth/sign-up"
-                    className="px-4 py-3 border-2 dark:border-dark-subtle dark:text-dark-subtle dark:hover:bg-dark-subtle dark:hover:text-light-subtle border-light-subtle text-light-subtle hover:bg-light-subtle hover:text-dark-subtle rounded focus:outline-none"
-                  >
-                    Create an account
-                  </Link>
+                  <>
+                    <Link
+                      to="/auth/sign-up"
+                      className="px-4 py-3 border-2 dark:border-dark-subtle dark:text-dark-subtle dark:hover:bg-dark-subtle dark:hover:text-light-subtle border-light-subtle text-light-subtle hover:bg-light-subtle hover:text-dark-subtle rounded focus:outline-none"
+                    >
+                      Sign Up
+                    </Link>
+                  </>
                 )}
               </li>
               <li className="block sm:block md:block lg:block xl:hidden">
@@ -151,50 +139,52 @@ const Navbar = () => {
             </ul>
           </div>
         </nav>
-        <div className="hidden sm:hidden md:hidden lg:hidden xl:block">
-          <ul className="flex w-full justify-around px-[8rem] pb-6 pt-2 font-semibold">
-            <li>
-              <CustomLink to="/" className="uppercase">
-                Home
-              </CustomLink>
-            </li>
-            <li>
-              <CustomLink to="/Ui-Ux-Design" className="uppercase">
-                Ui/Ux Design
-              </CustomLink>
-            </li>
-            <li>
-              <CustomLink to="/Web-Development" className="uppercase">
-                Web Development
-              </CustomLink>
-            </li>
-            <li>
-              <CustomLink to="/Typography" className="uppercase">
-                Typography
-              </CustomLink>
-            </li>
-            <li>
-              <CustomLink to="/Freelance-Business" className="uppercase">
-                Freelance Business
-              </CustomLink>
-            </li>
-            <li className="flex justify-between items-center">
-              <CustomLink to="/Lifestyle" className="uppercase">
-                Lifestyle
-              </CustomLink>
-            </li>
-            <li>
-              <CustomLink to="/Startups" className="uppercase">
-                Startups
-              </CustomLink>
-            </li>
-            <li>
-              <CustomLink to="/MoreLayouts" className="uppercase">
-                More Layouts
-              </CustomLink>
-            </li>
-          </ul>
-        </div>
+        {!navhidden && (
+          <div className="hidden sm:hidden md:hidden lg:hidden xl:block">
+            <ul className="flex w-full justify-around px-[8rem] pb-6 pt-2 font-semibold">
+              <li>
+                <CustomLink to="/" className="uppercase">
+                  Home
+                </CustomLink>
+              </li>
+              <li>
+                <CustomLink to="/Ui-Ux-Design" className="uppercase">
+                  Ui/Ux Design
+                </CustomLink>
+              </li>
+              <li>
+                <CustomLink to="/Web-Development" className="uppercase">
+                  Web Development
+                </CustomLink>
+              </li>
+              <li>
+                <CustomLink to="/Typography" className="uppercase">
+                  Typography
+                </CustomLink>
+              </li>
+              <li>
+                <CustomLink to="/Freelance-Business" className="uppercase">
+                  Freelance Business
+                </CustomLink>
+              </li>
+              <li className="flex justify-between items-center">
+                <CustomLink to="/Lifestyle" className="uppercase">
+                  Lifestyle
+                </CustomLink>
+              </li>
+              <li>
+                <CustomLink to="/Startups" className="uppercase">
+                  Startups
+                </CustomLink>
+              </li>
+              <li>
+                <CustomLink to="/MoreLayouts" className="uppercase">
+                  More Layouts
+                </CustomLink>
+              </li>
+            </ul>
+          </div>
+        )}
       </header>
     </>
   );

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
 import FromInput from "../form/FormInput";
 import FormContainer from "../form/FormContainer";
@@ -59,9 +59,9 @@ const Signin = () => {
     }
   };
 
-  // useEffect(() => {
-  //   if (isLoggedIn) navigate("/");
-  // }, [isLoggedIn]);
+  useEffect(() => {
+    if (isLoggedIn) navigate("/");
+  }, [isLoggedIn]);
 
   return (
     <FormContainer className="h-[80vh]">

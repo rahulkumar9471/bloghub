@@ -2,15 +2,11 @@ import React from "react";
 import banner from "../../images/banner.jpg";
 import { Link } from "react-router-dom";
 import { FaAward, FaBlogger } from "react-icons/fa6";
-import { FaBookReader, FaRegBookmark, FaPlayCircle } from "react-icons/fa";
+import { FaBookReader } from "react-icons/fa";
 import NumberCounter from "number-counter";
-import PostCard from "../utils/PostCard";
-import { useAuth } from "../../hooks";
+import PostCard from "../utils/PostCard"; 
 
-const Home = () => {
-
-  const {authInfo} = useAuth();
-  // console.log(authInfo);
+const Home = () => { 
 
   return (
     <>
@@ -57,7 +53,7 @@ const Home = () => {
                 <h3 className="text-xl font-bold dark:text-dark-subtle text-tertiary ">
                   <NumberCounter end={20000} delay={4} postFix="+" />
                 </h3>
-                <p className="text-l font-medium dark:text-dark-subtle text-tertiary ">
+                <p className="text-xl font-medium dark:text-dark-subtle text-tertiary ">
                   Special Course
                 </p>
               </div>
@@ -123,7 +119,7 @@ const Home = () => {
           </div>
         </div>
       </section>
-      <section className="bg-[#418160]">
+      <section className="bg-tertiary">
         <div className="px-[1rem] sm:px-[2rem] md:px-[4rem] lg:px-[6rem] xl:px-[8rem] py-6">
           <div className="lg:flex gap-x-10">
             <div className="container mx-auto">
