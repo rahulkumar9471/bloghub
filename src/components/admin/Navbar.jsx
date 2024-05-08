@@ -41,12 +41,12 @@ const Navbar = () => {
               />
             </span>
           </div>
-          <div className="relative">
+          <div className="relative mr-4">
             <button
               onClick={() => setShowOption(true)}
-              className="py-1 rounded-[4px] border-2 px-4 text-light-subtle"
+              className="py-1 rounded-full border-2 p-1 text-light-subtle"
             >
-              {authInfo.profile.name}
+              RK
             </button>
             <CreateOption
               visible={showOption}
