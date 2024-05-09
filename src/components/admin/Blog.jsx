@@ -8,7 +8,8 @@ import { uploadPdf } from "../../api/blog";
 import toast from "react-hot-toast";
 
 const Blog = () => {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState(0);
 
   const handleTypeError = (error) => {
     toast.error(error);
@@ -18,12 +19,10 @@ const Blog = () => {
     try {
       const formData = new FormData();
       formData.append("pdf", file);
-      const response = await uploadPdf(formData);
-      console.log(response);
+      const response = await uploadPdf(formData, setUploadProgress);
+  
       if (response.error) return toast.error(response.error);
 
-      if (response.public_id)
-        return toast.success("PDF was successfully uploaded");
     } catch (error) {
       console.error("An error occurred while Sign in Form:", error);
       toast.error("An unexpected error occurred. Please try again later.");
@@ -67,7 +66,7 @@ const Blog = () => {
       </div>
       <div className="fixed inset-0 bg-primary bg-opacity-50 backdrop-blur-sm flex items-center justify-center z-50">
         <div className="bg-primary rounded-md w-[45rem] h-[30rem] overflow-auto">
-          <UploadProgress visible message="Upload progress 20%" width={20} />
+          <UploadProgress visible message={`Upload progress ${uploadProgress}%`} width={uploadProgress} />
           <UploadPdf
             onTypeError={handleTypeError}
             handleChange={handleChange}
