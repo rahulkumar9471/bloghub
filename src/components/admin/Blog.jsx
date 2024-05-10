@@ -9,6 +9,7 @@ import toast from "react-hot-toast";
 
 const Blog = () => {
   const [open, setOpen] = useState(false);
+  const [pdfUploaded, setPdfUploaded] = useState(false);
   const [uploadProgress, setUploadProgress] = useState(0);
 
   const handleTypeError = (error) => {
@@ -19,14 +20,30 @@ const Blog = () => {
     try {
       const formData = new FormData();
       formData.append("pdf", file);
-      const response = await uploadPdf(formData, setUploadProgress);
-  
-      if (response.error) return toast.error(response.error);
-
+      setOpen(true);
+      const { error, public_id, url } = await uploadPdf(
+        formData,
+        setUploadProgress
+      );
+      if (error) {
+        toast.error(error);
+        setPdfUploaded(false);
+        setOpen(false);
+      }
+      if (!error) {
+        setPdfUploaded(true);
+      }
     } catch (error) {
       console.error("An error occurred while Sign in Form:", error);
       toast.error("An unexpected error occurred. Please try again later.");
     }
+  };
+
+  const getUploadProcessValue = () => {
+    if (!pdfUploaded && uploadProgress >= 100) {
+      return "Processing...";
+    }
+    return `Upload progress ${uploadProgress}%`;
   };
 
   return (
@@ -65,8 +82,12 @@ const Blog = () => {
         </div>
       </div>
       <div className="fixed inset-0 bg-primary bg-opacity-50 backdrop-blur-sm flex items-center justify-center z-50">
-        <div className="bg-primary rounded-md w-[45rem] h-[30rem] overflow-auto">
-          <UploadProgress visible message={`Upload progress ${uploadProgress}%`} width={uploadProgress} />
+        <div className="bg-primary rounded-md w-[45rem] h-[30rem] overflow-auto p-2">
+          <UploadProgress
+            visible={!pdfUploaded && open}
+            message={getUploadProcessValue()}
+            width={uploadProgress}
+          />
           <UploadPdf
             onTypeError={handleTypeError}
             handleChange={handleChange}
