@@ -6,23 +6,38 @@ import { FileUploader } from "react-drag-drop-files";
 import { AiOutlineCloudUpload } from "react-icons/ai";
 import { uploadPdf } from "../../api/blog";
 import toast from "react-hot-toast";
+import BlogForm from "./BlogForm";
 
 const Blog = () => {
   const [open, setOpen] = useState(false);
   const [pdfUploaded, setPdfUploaded] = useState(false);
   const [uploadProgress, setUploadProgress] = useState(0);
+  const [pdfInfo, setPdfInfo] = useState({});
+  const [blogInfo, setBlogInfo] = useState({
+    title: "",
+    description: "",
+    author: {},
+    publishDate: "",
+    status: "",
+    type: "",
+    genres: [],
+    tags: [],
+    cast: [],
+    writers: [],
+    pdf: {
+      url: "",
+      public_id: "",
+    },
+  });
 
   const handleTypeError = (error) => {
     toast.error(error);
   };
 
-  const handleChange = async (file) => {
+  const handleUploadPdf = async (data) => {
     try {
-      const formData = new FormData();
-      formData.append("pdf", file);
-      setOpen(true);
       const { error, public_id, url } = await uploadPdf(
-        formData,
+        data,
         setUploadProgress
       );
       if (error) {
@@ -33,8 +48,20 @@ const Blog = () => {
       if (!error) {
         setPdfUploaded(true);
       }
+      setPdfInfo({ url, public_id });
     } catch (error) {
-      console.error("An error occurred while Sign in Form:", error);
+      console.error("An error occurred while PDF Uploading:", error);
+      toast.error("An unexpected error occurred. Please try again later.");
+    }
+  };
+  const handleChange = (file) => {
+    try {
+      const formData = new FormData();
+      formData.append("pdf", file);
+      setOpen(true);
+      handleUploadPdf(formData);
+    } catch (error) {
+      console.error("An error occurred while PDF upload:", error);
       toast.error("An unexpected error occurred. Please try again later.");
     }
   };
@@ -83,7 +110,7 @@ const Blog = () => {
       </div>
       <div className="fixed inset-0 bg-primary bg-opacity-50 backdrop-blur-sm flex items-center justify-center z-50">
         <div className="bg-primary rounded-md w-[45rem] h-[30rem] overflow-auto p-2">
-          <UploadProgress
+          {/* <UploadProgress
             visible={!pdfUploaded && open}
             message={getUploadProcessValue()}
             width={uploadProgress}
@@ -92,7 +119,8 @@ const Blog = () => {
             onTypeError={handleTypeError}
             handleChange={handleChange}
             visible={!open}
-          />
+          /> */}
+          <BlogForm />
         </div>
       </div>
     </>
