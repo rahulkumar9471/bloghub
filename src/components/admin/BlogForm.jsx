@@ -1,13 +1,18 @@
 import { Button } from "@mui/material";
 import React from "react";
 import TagInput from "../utils/TagInput";
+import { commonInputClasses } from "../utils/Theme";
+import LiveSearch from "../utils/LiveSearch";
 
-const commonInputClasses =
-  "w-full border-2 border-[#D6D6D6] focus:border-[#FFFFFF] p-1 bg-transparent rounded-[4px]";
 
 const BlogForm = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(e.target);
+  };
+
   return (
-    <form className="text-[#FFFFFF] p-4">
+    <form onSubmit={handleSubmit} className="text-[#FFFFFF] p-4">
       <div>
         <div></div>
         <div className="flex flex-col gap-2 mb-1">
@@ -34,11 +39,7 @@ const BlogForm = () => {
         <div className="flex flex-col gap-2 mb-1">
           <label>Lead Author</label>
           <div className="flex justify-start items-center gap-2">
-            <input
-              type="text"
-              name="title"
-              className={commonInputClasses + ""}
-            />
+            <LiveSearch  />
             <p>As</p>
             <input
               type="text"
