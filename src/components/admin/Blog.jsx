@@ -109,7 +109,7 @@ const Blog = () => {
         </div>
       </div>
       <div className="fixed inset-0 bg-primary bg-opacity-50 backdrop-blur-sm flex items-center justify-center z-50">
-        <div className="bg-primary rounded-md w-[45rem] h-[30rem] overflow-auto p-2">
+        <div className="bg-primary rounded-md w-[45rem] h-[40rem] overflow-auto p-2">
           {/* <UploadProgress
             visible={!pdfUploaded && open}
             message={getUploadProcessValue()}

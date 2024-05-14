@@ -128,7 +128,8 @@
 }
 
 /* width */
-.tag-scroll-bar::-webkit-scrollbar {
+.custom-scroll-bar::-webkit-scrollbar {
+  width: 1px;
   height: 1px;
 }
 

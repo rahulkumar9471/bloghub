@@ -15,7 +15,7 @@ const TagInput = () => {
   const handleKeyDown = (e) => {
     const { key } = e;
     if (key === "," || key === "Enter") {
-      e.preventDefault(); // Prevents default behavior of input on Enter key
+      e.preventDefault();
       if (!tag.trim()) return;
 
       if (tags.includes(tag)) {
@@ -38,14 +38,14 @@ const TagInput = () => {
   };
 
   useEffect(() => {
-    input.current.scrollIntoView({})
+    input.current.scrollIntoView({});
   }, [tag]);
 
   return (
     <div>
       <div
         onKeyDown={handleKeyDown}
-        className="border-2 bg-transparent border-[#FFFFFF] px-2 h-10 rounded w-full text-[#FFFFFF] flex items-center space-x-2 overflow-x-auto tag-scroll-bar"
+        className="border-2 bg-transparent border-[#FFFFFF] px-2 h-10 rounded w-full text-[#FFFFFF] flex items-center space-x-2 overflow-x-auto custom-scroll-bar"
       >
         {tags.map((t, index) => (
           <Tag key={index} onClick={() => handleTagRemove(t)}>
