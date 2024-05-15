@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { forwardRef, useEffect, useRef, useState } from "react";
 import { commonInputClasses } from "./Theme";
 
 export const results = [
@@ -735,7 +735,27 @@ const LiveSearch = () => {
   );
 };
 
-const SearchResults = ({ focusedIndex, visible, results = [], result }) => {
+const renderItem = ({ id, firstName, image }) => {
+  return (
+    <div className="flex">
+      <img
+        src={image}
+        alt={firstName}
+        className="w-10 h-10 rounded object-cover"
+      />
+      <p className="">{firstName}</p>
+    </div>
+  );
+};
+
+const SearchResults = ({
+  focusedIndex,
+  visible,
+  results = [],
+  result,
+  // renderItem,
+  selectedResultStyle,
+}) => {
   const resultContainer = useRef();
   useEffect(() => {
     if (resultContainer.current && focusedIndex !== undefined) {
@@ -751,27 +771,53 @@ const SearchResults = ({ focusedIndex, visible, results = [], result }) => {
   return (
     <div className="absolute right-0 left-0 top-10 bg-[#FFFFFF] text-[#000000] shadow-md p-2 max-h-48 space-y-2 mt-1 rounded overflow-auto custom-scroll-bar">
       {results.map((result, index) => {
+        const getselectedClass = () => {
+          return selectedResultStyle ? selectedResultStyle : "bg-[#D6D6D6]";
+        };
         const { id, firstName, image } = result;
         return (
-          <div
-            onClick={() => onselect(result)}
+          <ResultCard
             ref={index === focusedIndex ? resultContainer : null}
-            key={id}
-            className={`cursor-pointer rounded overflow-hidden hover:bg-[#D6D6D6] transition flex space-x-2 ${
-              index === focusedIndex ? "bg-[#D6D6D6]" : ""
-            }`}
-          >
-            <img
-              src={image}
-              alt={firstName}
-              className="w-10 h-10 rounded object-cover"
-            />
-            <p className="">{firstName}</p>
-          </div>
+            key={result.id}
+            item={result}
+            renderItem={renderItem}
+            resultContainerStyle={resultContainerStyle}
+            selectedResultStyle={
+              index === focusedIndex ? getselectedClass() : ""
+            }
+            onMouseDown={() => onSelect(result)}
+          />
         );
       })}
     </div>
   );
 };
+
+const resultContainerStyle = () => {};
+
+const ResultCard = forwardRef((props, ref) => {
+  const {
+    item,
+    renderItem,
+    onMouseDown,
+    resultContainerStyle,
+    selectedResultStyle,
+  } = props;
+
+  const getClasses = () => {
+    if (resultContainerStyle)
+      return resultContainerStyle + " " + selectedResultStyle;
+    return (
+      selectedResultStyle +
+      "cursor-pointer rounded overflow-hidden hover:bg-[#D6D6D6] transition flex space-x-2"
+    );
+  };
+
+  return (
+    <div onMouseDown={onMouseDown} ref={ref} className={getClasses}>
+      {renderItem(item)}
+    </div>
+  );
+});
 
 export default LiveSearch;
