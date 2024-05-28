@@ -4,6 +4,17 @@ import TagInput from "../utils/TagInput";
 import { commonInputClasses } from "../utils/Theme";
 import LiveSearch from "../utils/LiveSearch";
 
+const buttonStyles = {
+  border: "1",
+  borderColor: "#FFFFFF",
+  color: "#FFFFFF",
+  textTransform: "capitalize",
+  "&:hover": {
+    backgroundColor: "#FFFFFF",
+    color: "#000000",
+    border: "0",
+  },
+};
 
 const BlogForm = () => {
   const handleSubmit = (e) => {
@@ -39,21 +50,14 @@ const BlogForm = () => {
         <div className="flex flex-col gap-2 mb-1">
           <label>Lead Author</label>
           <div className="flex justify-start items-center gap-2">
-            <LiveSearch  />
+            <LiveSearch />
             <p>As</p>
             <input
               type="text"
               name="title"
               className={commonInputClasses + ""}
             />
-            <Button
-              type="button"
-              style={{
-                backgroundColor: "#FFFFFF",
-                color: "#000000",
-              }}
-              variant="outlined"
-            >
+            <Button sx={buttonStyles} type="button" variant="outlined">
               Add
             </Button>
           </div>
@@ -83,14 +87,7 @@ const BlogForm = () => {
           </div>
         </div>
         <div className="mt-4">
-          <Button
-            className="w-full"
-            style={{
-              backgroundColor: "#FFFFFF",
-              color: "#000000",
-            }}
-            variant="outlined"
-          >
+          <Button className="w-full" sx={buttonStyles} variant="outlined">
             Upload
           </Button>
         </div>
